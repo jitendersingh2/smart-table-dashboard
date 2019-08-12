@@ -1,28 +1,40 @@
 <nb-card>
-  <nb-card-header>Edit Project Details - <b>{{ data.projectName }}</b></nb-card-header>
+  <nb-card-header>Edit Project Details - <b>{{ data.projectDetails.name }}</b></nb-card-header>
   <nb-card-body>
     <form>
       <div class="form-group row">
         <label for="projectName" class="label col-sm-3 col-form-label">Project Name</label>
         <div class="col-sm-9">
-          <input type="text" nbInput fullWidth id="projectName" placeholder="Project Name">
+          <input type="text" nbInput fullWidth id="projectName" placeholder="Project Name" [value]="data.projectDetails.name">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="projectDescription" class="label col-sm-3 col-form-label">Project Description</label>
+        <div class="col-sm-9">
+          <textarea id="projectDescription" rows="5" nbInput fullWidth shape="round" placeholder="Project Description" [value]="data.projectDetails.description"></textarea>
         </div>
       </div>
       <div class="form-group row">
         <label for="projectSector" class="label col-sm-3 col-form-label">Sector</label>
         <div class="col-sm-9">
-          <nb-select fullWidth id="projectSector" selected="sector1">
-            <nb-option value="sector1">Sector 1</nb-option>
-            <nb-option value="sector2">Sector 2</nb-option>
+          <nb-select fullWidth id="projectSector" [selected]="data.projectDetails.sector">
+            <nb-option *ngFor="let sector of data.sectors" [value]="sector">{{ sector }}</nb-option>
           </nb-select>
         </div>
       </div>
       <div class="form-group row">
         <label for="projectCountry" class="label col-sm-3 col-form-label">Country</label>
         <div class="col-sm-9">
-          <nb-select fullWidth id="projectCountry" selected="sector1">
-            <nb-option value="country1">Country 1</nb-option>
-            <nb-option value="country2">Country 2</nb-option>
+          <nb-select fullWidth id="projectCountry" [selected]="data.projectDetails.country">
+            <nb-option *ngFor="let country of data.countries" [value]="country">{{ country }}</nb-option>
+          </nb-select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="projectRegion" class="label col-sm-3 col-form-label">Region</label>
+        <div class="col-sm-9">
+          <nb-select fullWidth id="projectRegion" [selected]="data.projectDetails.region">
+            <nb-option *ngFor="let region of data.regions" [value]="region">{{ region }}</nb-option>
           </nb-select>
         </div>
       </div>

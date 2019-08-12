@@ -12,6 +12,8 @@ import { SmartTableData } from '../../../@core/data/smart-table';
 })
 export class SmartTableComponent {
 
+  data: any = [];
+  
   settings = {
     mode: 'external',
     hideSubHeader	: true,
@@ -53,16 +55,21 @@ export class SmartTableComponent {
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private service: SmartTableData, private dialogService: NbDialogService) {
-    const data = this.service.getData();
-    console.log('data- ', data);
-    this.source.load(data);
+    this.data = this.service.getData();
+    console.log('data- ', this.data);
+    this.source.load(this.data);
   }
 
   onClick(event: any): void {
     console.log('e- ', event);
     this.dialogService.open(EditProjectDetailsDialogComponent, {
       context: {
-        data: event.data,
+        data: {
+          projectDetails: event.data,
+          sectors: this.data.map(project => project.sector),
+          countries: this.data.map(project => project.country),
+          regions: this.data.map(project => project.region),
+        }
       },
     });
   }
