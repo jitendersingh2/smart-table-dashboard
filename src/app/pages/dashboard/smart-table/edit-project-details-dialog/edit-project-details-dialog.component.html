@@ -1,0 +1,35 @@
+<nb-card>
+  <nb-card-header>Edit Project Details - <b>{{ data.projectName }}</b></nb-card-header>
+  <nb-card-body>
+    <form>
+      <div class="form-group row">
+        <label for="projectName" class="label col-sm-3 col-form-label">Project Name</label>
+        <div class="col-sm-9">
+          <input type="text" nbInput fullWidth id="projectName" placeholder="Project Name">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="projectSector" class="label col-sm-3 col-form-label">Sector</label>
+        <div class="col-sm-9">
+          <nb-select fullWidth id="projectSector" selected="sector1">
+            <nb-option value="sector1">Sector 1</nb-option>
+            <nb-option value="sector2">Sector 2</nb-option>
+          </nb-select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="projectCountry" class="label col-sm-3 col-form-label">Country</label>
+        <div class="col-sm-9">
+          <nb-select fullWidth id="projectCountry" selected="sector1">
+            <nb-option value="country1">Country 1</nb-option>
+            <nb-option value="country2">Country 2</nb-option>
+          </nb-select>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+  <nb-card-footer>
+    <button class="cancel" nbButton status="danger" (click)="cancel()">Cancel</button>
+    <button class="update" nbButton status="success" (click)="submit()">Update</button>
+  </nb-card-footer>
+</nb-card>

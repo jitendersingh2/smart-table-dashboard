@@ -1,0 +1,20 @@
+@import '../../styles/themes';
+@import '~@nebular/theme/styles/global/breakpoints';
+@import '~bootstrap/scss/mixins/breakpoints';
+
+@include nb-install-component() {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  .footer {
+    font-size: 2rem;
+  }
+
+  @include media-breakpoint-down(is) {
+    .footer {
+      font-size: 1.5rem;
+    }
+  }
+}
