@@ -1,9 +1,29 @@
 <nb-card>
   <nb-card-header>
-    Smart Table
+    Projects
   </nb-card-header>
 
   <nb-card-body>
+      <div class="row">
+        <div class="col-sm-6">
+          <label for="projectSector" class="label col-sm-3">Sector</label>
+          <div class="col-sm-9">
+            <nb-select fullWidth id="projectSector" selected="" (selectedChange)="filterTable('sector', $event)">
+              <nb-option value="">Select Sector</nb-option>
+              <nb-option *ngFor="let sector of sectors" [value]="sector">{{ sector }}</nb-option>
+            </nb-select>
+          </div>
+        </div>
+        <div class="col-sm-6">
+            <label for="projectCountry" class="label col-sm-3 col-form-label">Country</label>
+            <div class="col-sm-9">
+              <nb-select fullWidth id="projectCountry" selected="" (selectedChange)="filterTable('country', $event)">
+                <nb-option value="" defaultSelected>Select Country</nb-option>
+                <nb-option *ngFor="let country of countries" [value]="country">{{ country }}</nb-option>
+              </nb-select>
+            </div>
+          </div>
+      </div>
     <ng2-smart-table [settings]="settings" [source]="source" (edit)="onClick($event)">
     </ng2-smart-table>
   </nb-card-body>

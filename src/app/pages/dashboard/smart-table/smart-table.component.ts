@@ -12,7 +12,12 @@ import { SmartTableData } from '../../../@core/data/smart-table';
 })
 export class SmartTableComponent {
 
-  data: any = [];
+  sectors: Array<String> = [];
+  countries: Array<String> = [];
+  regions: Array<String> = [];
+  data: any;
+  selectedSector: string = '';
+  selectedCountry: string = '';
   
   settings = {
     mode: 'external',
@@ -55,20 +60,32 @@ export class SmartTableComponent {
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private service: SmartTableData, private dialogService: NbDialogService) {
-    this.data = this.service.getData();
-    console.log('data- ', this.data);
-    this.source.load(this.data);
+    const data = this.service.getData();
+    this.data = data;
+    this.source.load(data);
+    this.sectors = data.map(project => project.sector);
+    this.countries = data.map(project => project.country);
+    this.regions = data.map(project => project.region);
+  }
+
+  filterTable(filterType: string, filterValue: string): void {
+    if (filterType === 'sector') {
+      this.selectedSector = filterValue;
+    } else if (filterType === 'country') {
+      this.selectedCountry = filterValue;
+    }
+    const data = this.data.filter(project => (this.selectedSector === '' || project.sector === this.selectedSector) && (this.selectedCountry === '' || project.country === this.selectedCountry));
+    this.source.load(data);
   }
 
   onClick(event: any): void {
-    console.log('e- ', event);
     this.dialogService.open(EditProjectDetailsDialogComponent, {
       context: {
         data: {
           projectDetails: event.data,
-          sectors: this.data.map(project => project.sector),
-          countries: this.data.map(project => project.country),
-          regions: this.data.map(project => project.region),
+          sectors: this.sectors,
+          countries: this.countries,
+          regions: this.regions,
         }
       },
     });
