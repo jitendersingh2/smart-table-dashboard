@@ -58,6 +58,8 @@ import { EarningCardBackComponent } from './earning-card/back-side/earning-card-
 import { EarningPieChartComponent } from './earning-card/back-side/earning-pie-chart.component';
 import { EarningCardFrontComponent } from './earning-card/front-side/earning-card-front.component';
 import { EarningLiveUpdateChartComponent } from './earning-card/front-side/earning-live-update-chart.component';
+import { BarChartComponent } from './bar-chart/bar-chart.component';
+import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { SmartTableComponent } from './smart-table/smart-table.component';
 import { EditProjectDetailsDialogComponent } from './smart-table/edit-project-details-dialog/edit-project-details-dialog.component';
 
@@ -113,6 +115,8 @@ import { EditProjectDetailsDialogComponent } from './smart-table/edit-project-de
     EarningCardBackComponent,
     EarningPieChartComponent,
     EarningLiveUpdateChartComponent,
+    BarChartComponent,
+    PieChartComponent,
     SmartTableComponent,
     EditProjectDetailsDialogComponent,
   ],
@@ -120,6 +124,8 @@ import { EditProjectDetailsDialogComponent } from './smart-table/edit-project-de
     CountryOrdersMapService,
   ],
   entryComponents: [
+    BarChartComponent,
+    PieChartComponent,
     SmartTableComponent,
     EditProjectDetailsDialogComponent,
   ],

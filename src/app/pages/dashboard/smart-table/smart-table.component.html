@@ -13,7 +13,7 @@
         </nb-select>
       </div>
       <div class="col-sm-4">
-        <label for="projectCountry" class="label col-sm-3 col-form-label">Country</label>
+        <label for="projectCountry" class="label col-sm-3">Country</label>
         <nb-select fullWidth id="projectCountry" selected="" (selectedChange)="filterTable('country', $event)">
           <nb-option value="" defaultSelected>Select Country</nb-option>
           <nb-option *ngFor="let country of countries" [value]="country">{{ country }}</nb-option>
