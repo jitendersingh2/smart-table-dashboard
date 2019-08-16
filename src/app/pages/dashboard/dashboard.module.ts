@@ -8,9 +8,11 @@ import {
   NbUserModule,
   NbIconModule,
   NbInputModule,
+  NbCheckboxModule,
   NbSelectModule,
   NbListModule,
 } from '@nebular/theme';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -62,6 +64,7 @@ import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { SmartTableComponent } from './smart-table/smart-table.component';
 import { EditProjectDetailsDialogComponent } from './smart-table/edit-project-details-dialog/edit-project-details-dialog.component';
+import { RowSelectComponent } from './smart-table/row-select/row-select.component';
 
 @NgModule({
   imports: [
@@ -74,7 +77,10 @@ import { EditProjectDetailsDialogComponent } from './smart-table/edit-project-de
     NbIconModule,
     NbTabsetModule,
     NbInputModule,
+    NbCheckboxModule,
     NbSelectModule,
+    FormsModule, 
+    ReactiveFormsModule,
     NbListModule,
     ChartModule,
     NbProgressBarModule,
@@ -119,6 +125,7 @@ import { EditProjectDetailsDialogComponent } from './smart-table/edit-project-de
     PieChartComponent,
     SmartTableComponent,
     EditProjectDetailsDialogComponent,
+    RowSelectComponent,
   ],
   providers: [
     CountryOrdersMapService,
@@ -128,6 +135,7 @@ import { EditProjectDetailsDialogComponent } from './smart-table/edit-project-de
     PieChartComponent,
     SmartTableComponent,
     EditProjectDetailsDialogComponent,
+    RowSelectComponent,
   ],
 })
 export class DashboardModule { }

@@ -1,6 +1,7 @@
 <nb-card>
   <nb-card-header>
     Projects
+    <button class="export" nbButton status="primary" (click)="exportAsPdf()">Export</button>
   </nb-card-header>
 
   <nb-card-body>
@@ -24,3 +25,5 @@
     </ng2-smart-table>
   </nb-card-body>
 </nb-card>
+
+<div id="exportPdfContent">Test</div>
