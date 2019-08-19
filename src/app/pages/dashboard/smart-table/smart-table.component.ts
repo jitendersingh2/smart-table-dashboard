@@ -18,9 +18,11 @@ export class SmartTableComponent {
   sectors: Array<String> = [];
   countries: Array<String> = [];
   regions: Array<String> = [];
+  approvalYears: Array<String> = [];
   data: any;
-  selectedSector: string = '';
-  selectedCountry: string = '';
+  selectedSectors: Array<String> = [];
+  selectedCountries: Array<String> = [];
+  selectedApprovalYears: Array<String> = [];
   pdfOptions: any = {
     margin:       1,
     filename:     'Projects.pdf',
@@ -39,36 +41,38 @@ export class SmartTableComponent {
     edit: {
       editButtonContent: '<i class="nb-edit" (click)="editProjectDetails($event)"></i>',
     },
-    // delete: {
-    //   deleteButtonContent: RowSelectComponent,
-    // },
     columns: {
       id: {
         title: '',
         type: 'custom',
         renderComponent: RowSelectComponent,
-        onComponentInitFunction: (instance) => {
-          // console.log('instance- ', instance);
-        }
       },
       name: {
-        title: 'Project Name',
+        title: 'Name',
         type: 'string',
       },
-      description: {
-        title: 'Project Description',
+      status: {
+        title: 'Status',
         type: 'string',
       },
-      sector: {
-        title: 'Sector',
+      approvedYear: {
+        title: 'Approved Year',
+        type: 'string',
+      },
+      region: {
+        title: 'Region',
         type: 'string',
       },
       country: {
         title: 'Country',
         type: 'string',
       },
-      region: {
-        title: 'Region',
+      sector: {
+        title: 'Sector',
+        type: 'string',
+      },
+      closedDate: {
+        title: 'Closed Date',
         type: 'string',
       },
     },
@@ -81,18 +85,29 @@ export class SmartTableComponent {
     this.data = data;
     this.smartTableServiceService.setAllProjects(this.data);
     this.source.load(data);
-    this.sectors = data.map(project => project.sector);
-    this.countries = data.map(project => project.country);
-    this.regions = data.map(project => project.region);
+    this.sectors = this.removeDuplicatesFromArray(data.map(project => project.sector));
+    this.countries = this.removeDuplicatesFromArray(data.map(project => project.country));
+    this.regions = this.removeDuplicatesFromArray(data.map(project => project.region));
+    this.approvalYears = this.removeDuplicatesFromArray(data.map(project => project.approvedYear));
   }
 
-  filterTable(filterType: string, filterValue: string): void {
+  removeDuplicatesFromArray(A: Array<String>): Array<String> {
+    return [...new Set(A)];
+  }
+
+  filterTable(filterType: string, filterValue: Array<String>): void {
     if (filterType === 'sector') {
-      this.selectedSector = filterValue;
+      this.selectedSectors = filterValue;
     } else if (filterType === 'country') {
-      this.selectedCountry = filterValue;
+      this.selectedCountries = filterValue;
+    } else if (filterType === 'approvalYear') {
+      this.selectedApprovalYears = filterValue;
     }
-    const data = this.data.filter(project => (this.selectedSector === '' || project.sector === this.selectedSector) && (this.selectedCountry === '' || project.country === this.selectedCountry));
+    const data = this.data.filter(project => {
+      return (this.selectedSectors.length === 0 || this.selectedSectors.includes(project.sector)) && 
+             (this.selectedCountries.length === 0 || this.selectedCountries.includes(project.country)) &&
+             (this.selectedApprovalYears.length === 0 || this.selectedApprovalYears.includes(project.approvedYear));
+    });
     this.source.load(data);
   }
 
@@ -106,13 +121,24 @@ export class SmartTableComponent {
           regions: this.regions,
         }
       },
+    }).onClose.subscribe(updatedProject => {
+      if(updatedProject) {
+        const project = this.data.find(project => project.id === updatedProject.id);
+        const updatedData = this.data.map(project => {
+          if(project.id === updatedProject.id) {
+            project = updatedProject;
+          }
+
+          return project;
+        });
+
+        this.data = updatedData;
+        this.source.load(this.data);
+      }
     });
   }
 
   exportAsPdf(): void {
-    const element = document.getElementById('exportPdfContent');
-    element.innerHTML = '';
-    element.style.display = 'block';
     const content = this.smartTableServiceService.selectedProjects.map(project => `
       <div>
         <h2>Projects</h2>
@@ -137,10 +163,26 @@ export class SmartTableComponent {
           <p>${project.region}</p>
         </div>
       </div>
-    `);
-    element.innerHTML = content;
-    html2Pdf().set(this.pdfOptions).from(element).save().then(() => {
-      element.style.display = 'none';
+    `).join('');
+
+    var preHtml = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
+    var postHtml = "</body></html>";
+    const blob = new Blob(['\ufeff', content], {
+      type: 'application/msword'
     });
+    // Create download link element
+    const downloadLink = document.createElement("a");
+    const filename = 'Project.doc';
+    // Specify link url
+    const url = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(preHtml + content + postHtml);
+    document.body.appendChild(downloadLink);
+    
+    if(navigator.msSaveOrOpenBlob) {
+        navigator.msSaveOrOpenBlob(blob, filename);
+    } else{
+      downloadLink.href = url;
+      downloadLink.download = filename;
+      downloadLink.click();
+    }
   }
 }

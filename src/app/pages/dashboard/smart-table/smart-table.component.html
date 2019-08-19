@@ -6,24 +6,26 @@
 
   <nb-card-body>
     <div class="row mb-20">
-      <div class="col-sm-4">
+      <div class="col-sm-3">
         <label for="projectSector" class="label col-sm-3">Sector</label>
-        <nb-select fullWidth id="projectSector" selected="" (selectedChange)="filterTable('sector', $event)">
-          <nb-option value="">Select Sector</nb-option>
+        <nb-select multiple fullWidth id="projectSector" selected="" (selectedChange)="filterTable('sector', $event)">
           <nb-option *ngFor="let sector of sectors" [value]="sector">{{ sector }}</nb-option>
         </nb-select>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-3">
         <label for="projectCountry" class="label col-sm-3">Country</label>
-        <nb-select fullWidth id="projectCountry" selected="" (selectedChange)="filterTable('country', $event)">
-          <nb-option value="" defaultSelected>Select Country</nb-option>
+        <nb-select multiple fullWidth id="projectCountry" selected="" (selectedChange)="filterTable('country', $event)">
           <nb-option *ngFor="let country of countries" [value]="country">{{ country }}</nb-option>
         </nb-select>
       </div>
+      <div class="col-sm-3">
+        <label for="approvalYear" class="label">Approval Year</label>
+        <nb-select multiple fullWidth id="approvalYear" selected="" (selectedChange)="filterTable('approvalYear', $event)">
+          <nb-option *ngFor="let approvalYear of approvalYears" [value]="approvalYear">{{ approvalYear }}</nb-option>
+        </nb-select>
+      </div>
     </div>
-    <ng2-smart-table [settings]="settings" [source]="source" (edit)="onClick($event)">
+    <ng2-smart-table [settings]="settings" [source]="source" (edit)="editProjectDetails($event)">
     </ng2-smart-table>
   </nb-card-body>
 </nb-card>
-
-<div id="exportPdfContent">Test</div>

@@ -1,14 +1,7 @@
 {
-  "name": "ngx-admin",
-  "version": "4.0.1",
+  "name": "wfa-dashboard",
+  "version": "1.0.0",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/akveo/ngx-admin.git"
-  },
-  "bugs": {
-    "url": "https://github.com/akveo/ngx-admin/issues"
-  },
   "scripts": {
     "ng": "ng",
     "conventional-changelog": "conventional-changelog",

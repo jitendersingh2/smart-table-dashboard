@@ -12,11 +12,15 @@ export class EditProjectDetailsDialogComponent {
   
   constructor(protected ref: NbDialogRef<EditProjectDetailsDialogComponent>) { }
 
+  updateProjectDetails(fieldType: string, fiedlValue: string) {
+    this.data.projectDetails[fieldType] = fiedlValue;
+  }
+  
   cancel() {
     this.ref.close();
   }
 
   submit() {
-    this.ref.close();
+    this.ref.close(this.data.projectDetails);
   }
 }
