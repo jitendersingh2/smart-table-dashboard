@@ -1,19 +1,19 @@
 <nb-card>
   <nb-card-header>
     Projects
-    <button class="export" nbButton status="primary">Export</button>
+    <button class="export" nbButton status="primary" (click)="exportAsPdf()">Export</button>
   </nb-card-header>
 
   <nb-card-body>
     <div class="row mb-20">
       <div class="col-sm-3">
-        <label for="projectSector" class="label col-sm-3">Sector</label>
+        <label for="projectSector" class="label">Sector</label>
         <nb-select multiple fullWidth id="projectSector" selected="" (selectedChange)="filterTable('sector', $event)">
           <nb-option *ngFor="let sector of sectors" [value]="sector">{{ sector }}</nb-option>
         </nb-select>
       </div>
       <div class="col-sm-3">
-        <label for="projectCountry" class="label col-sm-3">Country</label>
+        <label for="projectCountry" class="label">Country</label>
         <nb-select multiple fullWidth id="projectCountry" selected="" (selectedChange)="filterTable('country', $event)">
           <nb-option *ngFor="let country of countries" [value]="country">{{ country }}</nb-option>
         </nb-select>

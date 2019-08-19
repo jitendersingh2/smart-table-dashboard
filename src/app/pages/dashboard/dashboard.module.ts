@@ -19,8 +19,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { ThemeModule } from '../../@theme/theme.module';
 import { DashboardComponent } from './dashboard.component';
-import { ChartModule } from 'angular2-chartjs';
 import { SmartTableComponent } from './smart-table/smart-table.component';
+import { EditProjectDetailsDialogComponent } from './smart-table/edit-project-details-dialog/edit-project-details-dialog.component';
 import { RowSelectComponent } from './smart-table/row-select/row-select.component';
 
 @NgModule({
@@ -39,7 +39,6 @@ import { RowSelectComponent } from './smart-table/row-select/row-select.componen
     FormsModule, 
     ReactiveFormsModule,
     NbListModule,
-    ChartModule,
     NbProgressBarModule,
     NgxEchartsModule,
     NgxChartsModule,
@@ -47,11 +46,13 @@ import { RowSelectComponent } from './smart-table/row-select/row-select.componen
   declarations: [
     DashboardComponent,
     SmartTableComponent,
+    EditProjectDetailsDialogComponent,
     RowSelectComponent,
   ],
   providers: [],
   entryComponents: [
     SmartTableComponent,
+    EditProjectDetailsDialogComponent,
     RowSelectComponent,
   ],
 })

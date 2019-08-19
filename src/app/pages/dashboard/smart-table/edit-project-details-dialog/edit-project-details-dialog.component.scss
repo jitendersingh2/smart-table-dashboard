@@ -1,0 +1,11 @@
+@import '../../../../@theme/styles/themes';
+
+@include nb-install-component() {
+  nb-card {
+    min-width: 600px;
+    max-height: 600px;
+    .update {
+      float: right;
+    }
+  }
+}

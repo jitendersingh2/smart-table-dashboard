@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
 import { LocalDataSource } from 'ng2-smart-table';
 import * as html2Pdf from 'html2pdf.js';
+import { EditProjectDetailsDialogComponent } from './edit-project-details-dialog/edit-project-details-dialog.component';
 import { RowSelectComponent } from './row-select/row-select.component';
 import { SmartTableServiceService } from './smart-table-service.service'
 
@@ -31,7 +32,7 @@ export class SmartTableComponent {
       delete: false,
     },
     edit: {
-      editButtonContent: '<i class="nb-edit"></i>',
+      editButtonContent: '<i class="nb-edit" (click)="editProjectDetails($event)"></i>',
     },
     columns: {
       id: {
@@ -101,5 +102,84 @@ export class SmartTableComponent {
              (this.selectedApprovalYears.length === 0 || this.selectedApprovalYears.includes(project.approvedYear));
     });
     this.source.load(data);
+  }
+
+  editProjectDetails(event: any): void {
+    this.dialogService.open(EditProjectDetailsDialogComponent, {
+      context: {
+        data: {
+          projectDetails: event.data,
+          sectors: this.sectors,
+          countries: this.countries,
+          regions: this.regions,
+        }
+      },
+    }).onClose.subscribe(updatedProject => {
+      if(updatedProject) {
+        const project = this.data.find(project => project.id === updatedProject.id);
+        const updatedData = this.data.map(project => {
+          if(project.id === updatedProject.id) {
+            project = updatedProject;
+          }
+
+          return project;
+        });
+
+        this.data = updatedData;
+        this.source.load(this.data);
+      }
+    });
+  }
+
+  exportAsPdf(): void {
+    const selectedProjects = this.smartTableServiceService.selectedProjects;
+    if(selectedProjects.length === 0) {
+      return ;
+    }
+    const content = selectedProjects.map(project => `
+      <div>
+        <h2>Projects</h2>
+        <div>
+          <h3>Project Name</h3>
+          <p>${project.name}</p>
+        </div>
+        <div>
+          <h3>Project Description</h3>
+          <p>${project.description}</p>
+        </div>
+        <div>
+          <h3>Project Sector</h3>
+          <p>${project.sector}</p>
+        </div>
+        <div>
+          <h3>Project Country</h3>
+          <p>${project.country}</p>
+        </div>
+        <div>
+          <h3>Project Region</h3>
+          <p>${project.region}</p>
+        </div>
+      </div>
+    `).join('');
+
+    var preHtml = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
+    var postHtml = "</body></html>";
+    const blob = new Blob(['\ufeff', content], {
+      type: 'application/msword'
+    });
+    // Create download link element
+    const downloadLink = document.createElement("a");
+    const filename = 'Project.doc';
+    // Specify link url
+    const url = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(preHtml + content + postHtml);
+    document.body.appendChild(downloadLink);
+    
+    if(navigator.msSaveOrOpenBlob) {
+        navigator.msSaveOrOpenBlob(blob, filename);
+    } else{
+      downloadLink.href = url;
+      downloadLink.download = filename;
+      downloadLink.click();
+    }
   }
 }
