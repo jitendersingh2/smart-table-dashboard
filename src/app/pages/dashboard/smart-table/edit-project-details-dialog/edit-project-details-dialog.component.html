@@ -27,27 +27,27 @@
         </div>
       </div>
       <div class="form-group row">
-        <label for="projectSector" class="label col-sm-4 col-form-label">Sector</label>
+        <label for="projectName" class="label col-sm-4 col-form-label">IBRD Financing</label>
         <div class="col-sm-8">
-          <nb-select fullWidth id="projectSector" name="projectSector" [(ngModel)]="data.projectDetails.sector">
-            <nb-option *ngFor="let sector of data.sectors" [value]="sector">{{ sector }}</nb-option>
-          </nb-select>
+          <input type="text" name="ibrdFinancing" nbInput fullWidth id="ibrdFinancing" placeholder="IBRD Financing" [(ngModel)]="data.projectDetails.ibrdFinancing">
         </div>
       </div>
       <div class="form-group row">
-        <label for="projectCountry" class="label col-sm-4 col-form-label">Country</label>
+        <label for="projectName" class="label col-sm-4 col-form-label">Data Point 00</label>
         <div class="col-sm-8">
-          <nb-select fullWidth id="projectCountry" name="projectCountry" [(ngModel)]="data.projectDetails.country">
-            <nb-option *ngFor="let country of data.countries" [value]="country">{{ country }}</nb-option>
-          </nb-select>
+          <input type="text" name="dataPoint00" nbInput fullWidth id="dataPoint00" placeholder="Data Point 00" [(ngModel)]="data.projectDetails.dataPoint00">
         </div>
       </div>
       <div class="form-group row">
-        <label for="projectRegion" class="label col-sm-4 col-form-label">Region</label>
+        <label for="projectName" class="label col-sm-4 col-form-label">Data Point 01</label>
         <div class="col-sm-8">
-          <nb-select fullWidth id="projectRegion" name="projectRegion" [(ngModel)]="data.projectDetails.region">
-            <nb-option *ngFor="let region of data.regions" [value]="region">{{ region }}</nb-option>
-          </nb-select>
+          <input type="text" name="dataPoint01" nbInput fullWidth id="dataPoint01" placeholder="Data Point 01" [(ngModel)]="data.projectDetails.dataPoint01">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="projectName" class="label col-sm-4 col-form-label">Data Point 02</label>
+        <div class="col-sm-8">
+          <input type="text" name="dataPoint02" nbInput fullWidth id="dataPoint02" placeholder="Data Point 02" [(ngModel)]="data.projectDetails.dataPoint02">
         </div>
       </div>
     </form>

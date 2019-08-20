@@ -10,7 +10,7 @@ export class SmartTableService extends SmartTableData {
     description: `Project Description ${i + 1}`,
     status: 'Closed',
     approvedYear: '2012',
-    ibrdFinancing: 400,
+    ibrdFinancing: '400 Million',
     region: `Region ${i + 1}`,
     country: `Country ${i + 1}`,
     sector: `Sector ${i + 1}`,
@@ -20,6 +20,10 @@ export class SmartTableService extends SmartTableData {
     expectedResults: `Expected Results ${i + 1}`,
     countryChallenges: `Country Challenges ${i + 1}`,
     projectGoals: `Project Goals ${i + 1}`,
+    dataPoint00: 'Yes',
+    dataPoint01: 'Blue Money',
+    dataPoint02: 'Energy and Extractives',
+    dataPoint03: 'Finance',
   }));
 
   getData() {
