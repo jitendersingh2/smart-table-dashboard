@@ -2,10 +2,15 @@
 
 @include nb-install-component() {
   nb-card {
-    min-width: 600px;
-    max-height: 600px;
+    min-width: 650px;
+    max-height: 900px;
     .update {
       float: right;
+    }
+    form {
+      .label {
+        font-size: 1rem;
+      }
     }
   }
 }

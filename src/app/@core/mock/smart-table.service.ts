@@ -17,6 +17,9 @@ export class SmartTableService extends SmartTableData {
     closedDate: '2019',
     lendingInstrument: 'Other',
     padOricr: 'PAD',
+    expectedResults: `Expected Results ${i + 1}`,
+    countryChallenges: `Country Challenges ${i + 1}`,
+    projectGoals: `Project Goals ${i + 1}`,
   }));
 
   getData() {
