@@ -4,6 +4,15 @@
   nb-card {
     min-width: 700px;
     max-height: 900px;
+    nb-card-body {
+      padding: 0px;
+      nb-tab {
+        height: 500px;
+        nb-checkbox {
+          cursor: pointer;
+        }
+      }
+    }
     .update {
       float: right;
     }

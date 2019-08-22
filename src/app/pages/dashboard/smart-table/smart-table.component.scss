@@ -12,5 +12,8 @@
     .export {
       float: right;
     }
+    ::ng-deep .custom-checkbox {
+      cursor: pointer;
+    }
   }
 }

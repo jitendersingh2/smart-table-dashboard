@@ -74,7 +74,27 @@ export class SmartTableComponent {
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private service: SmartTableData, private smartTableServiceService: SmartTableServiceService, private dialogService: NbDialogService) {
-    const data = this.service.getData();
+    const data = this.service.getData().map((projectDetails) => ({
+      id: projectDetails.PROJ_ID,
+      name: projectDetails.PROJ_DISPLAY_NAME,
+      description: projectDetails.PROJ_LGL_NAME,
+      status: projectDetails.PROJ_STAT_NAME,
+      approvedYear: projectDetails.PROJ_APPRVL_FY,
+      ibrdFinancing: projectDetails.ibrdFinancing,
+      region: projectDetails.RGN_NAME,
+      country: projectDetails.CNTRY_LONG_NAME,
+      sector: projectDetails.SECT_BD_NAME,
+      closedDate: projectDetails.closedDate,
+      lendingInstrument: projectDetails.lendingInstrument,
+      padOricr: projectDetails.padOricr,
+      expectedResults: projectDetails.expectedResults,
+      countryChallenges: projectDetails.countryChallenges,
+      projectGoals: projectDetails.projectGoals,
+      dataPoint00: projectDetails.dataPoint00,
+      dataPoint01: projectDetails.dataPoint01,
+      dataPoint02: projectDetails.dataPoint02,
+      dataPoint03: projectDetails.dataPoint03,
+    }));
     this.data = data;
     this.smartTableServiceService.setAllProjects(this.data);
     this.source.load(data);

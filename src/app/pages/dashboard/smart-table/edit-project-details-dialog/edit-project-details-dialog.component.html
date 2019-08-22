@@ -1,56 +1,67 @@
 <nb-card>
   <nb-card-header>Edit Project Details - <b>{{ data.projectDetails.name }}</b></nb-card-header>
   <nb-card-body>
-    <form>
-      <div class="form-group row">
-        <label for="projectGoals" class="label col-sm-4 col-form-label">Project Description</label>
-        <div class="col-sm-8">
-          <textarea id="projectDescription" name="projectDescription" rows="2" nbInput fullWidth shape="round" placeholder="Project Description" [(ngModel)]="data.projectDetails.description"></textarea>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="expectedResults" class="label col-sm-4 col-form-label">Expected Results</label>
-        <div class="col-sm-8">
-          <textarea id="expectedResults" name="expectedResults" rows="2" nbInput fullWidth shape="round" placeholder="Expected Results" [(ngModel)]="data.projectDetails.expectedResults"></textarea>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="countryChallenges" class="label col-sm-4 col-form-label">Country Challenges</label>
-        <div class="col-sm-8">
-          <textarea id="countryChallenges" name="countryChallenges" rows="2" nbInput fullWidth shape="round" placeholder="Country Challenges" [(ngModel)]="data.projectDetails.countryChallenges"></textarea>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="projectGoals" class="label col-sm-4 col-form-label">Project Goals</label>
-        <div class="col-sm-8">
-          <textarea id="projectGoals" name="projectGoals" rows="2" nbInput fullWidth shape="round" placeholder="Project Goals" [(ngModel)]="data.projectDetails.projectGoals"></textarea>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="projectName" class="label col-sm-4 col-form-label">IBRD Financing</label>
-        <div class="col-sm-8">
-          <input type="text" name="ibrdFinancing" nbInput fullWidth id="ibrdFinancing" placeholder="IBRD Financing" [(ngModel)]="data.projectDetails.ibrdFinancing">
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="projectName" class="label col-sm-4 col-form-label">Data Point 00</label>
-        <div class="col-sm-8">
-          <input type="text" name="dataPoint00" nbInput fullWidth id="dataPoint00" placeholder="Data Point 00" [(ngModel)]="data.projectDetails.dataPoint00">
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="projectName" class="label col-sm-4 col-form-label">Data Point 01</label>
-        <div class="col-sm-8">
-          <input type="text" name="dataPoint01" nbInput fullWidth id="dataPoint01" placeholder="Data Point 01" [(ngModel)]="data.projectDetails.dataPoint01">
-        </div>
-      </div>
-      <div class="form-group row">
-        <label for="projectName" class="label col-sm-4 col-form-label">Data Point 02</label>
-        <div class="col-sm-8">
-          <input type="text" name="dataPoint02" nbInput fullWidth id="dataPoint02" placeholder="Data Point 02" [(ngModel)]="data.projectDetails.dataPoint02">
-        </div>
-      </div>
-    </form>
+    <nb-tabset>
+      <nb-tab tabTitle="Project Details">
+        <form>
+          <div class="form-group row">
+            <label for="projectGoals" class="label col-sm-4 col-form-label">Project Description</label>
+            <div class="col-sm-8">
+              <textarea id="projectDescription" name="projectDescription" rows="2" nbInput fullWidth shape="round" placeholder="Project Description" [(ngModel)]="data.projectDetails.description"></textarea>
+            </div>
+          </div>
+          <!-- <div class="form-group row">
+            <label for="expectedResults" class="label col-sm-4 col-form-label">Expected Results</label>
+            <div class="col-sm-8">
+              <textarea id="expectedResults" name="expectedResults" rows="2" nbInput fullWidth shape="round" placeholder="Expected Results" [(ngModel)]="data.projectDetails.expectedResults"></textarea>
+            </div>
+          </div> -->
+          <div class="form-group row">
+            <label for="countryChallenges" class="label col-sm-4 col-form-label">Country Challenges</label>
+            <div class="col-sm-8">
+              <textarea id="countryChallenges" name="countryChallenges" rows="2" nbInput fullWidth shape="round" placeholder="Country Challenges" [(ngModel)]="data.projectDetails.countryChallenges"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="projectGoals" class="label col-sm-4 col-form-label">Project Goals</label>
+            <div class="col-sm-8">
+              <textarea id="projectGoals" name="projectGoals" rows="2" nbInput fullWidth shape="round" placeholder="Project Goals" [(ngModel)]="data.projectDetails.projectGoals"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="projectName" class="label col-sm-4 col-form-label">IBRD Financing</label>
+            <div class="col-sm-8">
+              <input type="text" name="ibrdFinancing" nbInput fullWidth id="ibrdFinancing" placeholder="IBRD Financing" [(ngModel)]="data.projectDetails.ibrdFinancing">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="projectName" class="label col-sm-4 col-form-label">Data Point 00</label>
+            <div class="col-sm-8">
+              <input type="text" name="dataPoint00" nbInput fullWidth id="dataPoint00" placeholder="Data Point 00" [(ngModel)]="data.projectDetails.dataPoint00">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="projectName" class="label col-sm-4 col-form-label">Data Point 01</label>
+            <div class="col-sm-8">
+              <input type="text" name="dataPoint01" nbInput fullWidth id="dataPoint01" placeholder="Data Point 01" [(ngModel)]="data.projectDetails.dataPoint01">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="projectName" class="label col-sm-4 col-form-label">Data Point 02</label>
+            <div class="col-sm-8">
+              <input type="text" name="dataPoint02" nbInput fullWidth id="dataPoint02" placeholder="Data Point 02" [(ngModel)]="data.projectDetails.dataPoint02">
+            </div>
+          </div>
+        </form>
+      </nb-tab>
+      <nb-tab tabTitle="Expected Results">
+        <nb-list>
+          <nb-list-item *ngFor="let result of data.projectDetails.expectedResults">
+            <nb-checkbox status="primary" checked="true" (checkedChange)="checkedChange($event, result)">{{ result }}</nb-checkbox>
+          </nb-list-item>
+        </nb-list>
+      </nb-tab>
+    </nb-tabset>
   </nb-card-body>
   <nb-card-footer>
     <button class="cancel" nbButton status="danger" (click)="cancel()">Cancel</button>
