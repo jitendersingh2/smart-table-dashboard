@@ -23,6 +23,17 @@ export class SmartTableComponent {
   selectedSectors: Array<String> = [];
   selectedCountries: Array<String> = [];
   selectedApprovalYears: Array<String> = [];
+  indicators: any = this.service.getResultIndicators().filter(ind => ind.PROJ_IND_USAGE_TYPE_CODE === "CI").map(ind => ({
+    indicator: ind.IND_NAME,
+    target: ind.TGT_VAL_TEXT,
+  })).reduce((acc, current: any) => {
+    const x = acc.find(item => item.indicator === current.indicator);
+    if (!x) {
+      return acc.concat([current]);
+    } else {
+      return acc;
+    }
+  }, []);
   
   settings = {
     mode: 'external',
@@ -35,10 +46,14 @@ export class SmartTableComponent {
       editButtonContent: '<i class="nb-edit" (click)="editProjectDetails($event)"></i>',
     },
     columns: {
-      id: {
+      select: {
         title: '',
         type: 'custom',
         renderComponent: RowSelectComponent,
+      },
+      id: {
+        title: 'ID',
+        type: 'string',
       },
       name: {
         title: 'Name',
@@ -94,6 +109,9 @@ export class SmartTableComponent {
       dataPoint01: projectDetails.dataPoint01,
       dataPoint02: projectDetails.dataPoint02,
       dataPoint03: projectDetails.dataPoint03,
+      select: '',
+      ...this.service.getData01()[0],
+      indicators: this.indicators,
     }));
     this.data = data;
     this.smartTableServiceService.setAllProjects(this.data);
@@ -128,7 +146,9 @@ export class SmartTableComponent {
     this.dialogService.open(EditProjectDetailsDialogComponent, {
       context: {
         data: {
-          projectDetails: event.data,
+          projectDetails: {
+            ...event.data,
+          },
           sectors: this.sectors,
           countries: this.countries,
           regions: this.regions,

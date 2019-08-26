@@ -11,6 +11,7 @@ import {
   NbCheckboxModule,
   NbSelectModule,
   NbListModule,
+  NbTooltipModule,
 } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
@@ -36,6 +37,7 @@ import { RowSelectComponent } from './smart-table/row-select/row-select.componen
     NbInputModule,
     NbCheckboxModule,
     NbSelectModule,
+    NbTooltipModule,
     FormsModule, 
     ReactiveFormsModule,
     NbListModule,
