@@ -12,12 +12,10 @@ const routes: Routes = [{
     {
       path: 'dashboard',
       component: DashboardComponent,
-      children: [
-        {
-          path: 'projects-edit',
-          component: ProjectsEditComponent,
-        },
-      ]
+    },
+    {
+      path: 'projects-edit',
+      component: ProjectsEditComponent,
     },
     {
       path: '',

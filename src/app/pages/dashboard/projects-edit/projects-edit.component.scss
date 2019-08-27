@@ -1,0 +1,22 @@
+@import '../../../@theme/styles/themes';
+
+@include nb-install-component() {
+  nb-accordion {
+    // min-width: 700px;
+    // max-height: 900px;
+    nb-accordion-item-body {
+      padding: 0px;
+      nb-checkbox {
+        cursor: pointer;
+      }
+    }
+    .update {
+      float: right;
+    }
+    form {
+      .label {
+        font-size: 1rem;
+      }
+    }
+  }
+}
