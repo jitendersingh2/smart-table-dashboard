@@ -4,7 +4,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 import * as html2Pdf from 'html2pdf.js';
 import { EditProjectDetailsDialogComponent } from './edit-project-details-dialog/edit-project-details-dialog.component';
 import { RowSelectComponent } from './row-select/row-select.component';
-import { SmartTableServiceService } from './smart-table-service.service'
+import { SmartTableServiceService } from './smart-table-service.service';
 
 import { SmartTableData } from '../../../@core/data/smart-table';
 
@@ -23,6 +23,8 @@ export class SmartTableComponent {
   selectedSectors: Array<String> = [];
   selectedCountries: Array<String> = [];
   selectedApprovalYears: Array<String> = [];
+  showSelectedProjects: boolean = false;
+  selectedProjects: any = [];
   indicators: any = this.service.getResultIndicators().filter(ind => ind.PROJ_IND_USAGE_TYPE_CODE === "CI").map(ind => ({
     indicator: ind.IND_NAME,
     target: ind.TGT_VAL_TEXT,
@@ -88,7 +90,7 @@ export class SmartTableComponent {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: SmartTableData, private smartTableServiceService: SmartTableServiceService, private dialogService: NbDialogService) {
+  constructor(private service: SmartTableData, public smartTableServiceService: SmartTableServiceService, private dialogService: NbDialogService) {
     const data = this.service.getData().map((projectDetails) => ({
       id: projectDetails.PROJ_ID,
       name: projectDetails.PROJ_DISPLAY_NAME,
@@ -124,6 +126,12 @@ export class SmartTableComponent {
 
   removeDuplicatesFromArray(A: Array<String>): Array<String> {
     return [...new Set(A)];
+  }
+
+  next() {
+    this.selectedProjects = this.smartTableServiceService.selectedProjects;
+    console.log('this.selectedProjects- ', this.selectedProjects);
+    this.showSelectedProjects = true;
   }
 
   filterTable(filterType: string, filterValue: Array<String>): void {

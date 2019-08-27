@@ -1,7 +1,7 @@
 <nb-card>
   <nb-card-header>
     Projects
-    <button class="export" nbButton status="primary" (click)="exportAsPdf()">Export</button>
+    <!-- <button class="export" nbButton status="primary" (click)="exportAsPdf()">Export</button> -->
   </nb-card-header>
 
   <nb-card-body>
@@ -28,4 +28,11 @@
     <ng2-smart-table [settings]="settings" [source]="source" (edit)="editProjectDetails($event)">
     </ng2-smart-table>
   </nb-card-body>
+  <nb-card-footer>
+    <a href="/projects-edit"> 
+      <!-- [routerLink]="['dashboard', 'projects-edit']"  -->
+      Next
+      <!-- <button nbButton status="primary">Next</button> -->
+    </a>
+  </nb-card-footer>
 </nb-card>

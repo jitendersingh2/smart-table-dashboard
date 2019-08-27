@@ -12,6 +12,7 @@ import {
   NbSelectModule,
   NbListModule,
   NbTooltipModule,
+  NbAccordionModule,
 } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
@@ -23,6 +24,7 @@ import { DashboardComponent } from './dashboard.component';
 import { SmartTableComponent } from './smart-table/smart-table.component';
 import { EditProjectDetailsDialogComponent } from './smart-table/edit-project-details-dialog/edit-project-details-dialog.component';
 import { RowSelectComponent } from './smart-table/row-select/row-select.component';
+import { ProjectsEditComponent } from './projects-edit/projects-edit.component';
 
 @NgModule({
   imports: [
@@ -44,12 +46,14 @@ import { RowSelectComponent } from './smart-table/row-select/row-select.componen
     NbProgressBarModule,
     NgxEchartsModule,
     NgxChartsModule,
+    NbAccordionModule,
   ],
   declarations: [
     DashboardComponent,
     SmartTableComponent,
     EditProjectDetailsDialogComponent,
     RowSelectComponent,
+    ProjectsEditComponent,
   ],
   providers: [],
   entryComponents: [
