@@ -6,7 +6,7 @@
           {{project.name}}
         </nb-accordion-item-header>
         <nb-accordion-item-body>
-          <h3>Expected Results</h3>
+          <h5>Expected Results</h5>
           <nb-list>
             <nb-list-item class="col-md-12 row">
               <div class="col-md-2"></div>
@@ -14,7 +14,7 @@
               <div class="col-md-2">Target Value</div>
             </nb-list-item>
             <nb-list-item class="col-md-12 row" *ngFor="let result of project.indicators">
-              <nb-checkbox class="col-md-2" status="primary" checked="true" (checkedChange)="checkedChange($event, result)"></nb-checkbox>
+              <nb-checkbox class="col-md-2" status="primary" checked="true" (checkedChange)="checkedChange($event, result, project)"></nb-checkbox>
               <div class="col-md-6">{{ result.indicator }}</div>
               <div class="col-md-2">{{ result.target }}</div>
             </nb-list-item>
@@ -72,7 +72,7 @@
                 <input type="text" name="dataPoint02" nbInput fullWidth id="dataPoint02" placeholder="Data Point 02" [(ngModel)]="project.dataPoint02">
               </div>
             </div>
-            <button class="update" nbButton status="success" (click)="submit()">Update</button>
+            <button class="update" nbButton status="success" (click)="submit(project)">Update</button>
           </form>
         </nb-accordion-item-body>
       </nb-accordion-item>

@@ -16,15 +16,21 @@ export class ProjectsEditComponent implements OnInit {
     console.log('this.selectedProjects- ', this.selectedProjects);
   }
 
-  checkedChange(checked: boolean, result: string) {
+  submit(project) {
+    console.log('project- ', project);
+    this.smartTableServiceService.updateProject(project);
+  }
+
+  checkedChange(checked: boolean, result: string, project: any) {
     // console.log('e- ', checked, result);
-    // const { expectedResults } = this.data.projectDetails;
-    // let newExpectedResults = [];
-    // if(!checked) {
-    //   newExpectedResults = expectedResults.filter(originalResult => originalResult !== result);
-    // } else {
-    //   newExpectedResults = [...expectedResults, result].sort();
-    // }
+    const { expectedResults } = project;
+    let newExpectedResults = [];
+    if(!checked) {
+      newExpectedResults = expectedResults.filter(originalResult => originalResult !== result);
+    } else {
+      newExpectedResults = [...expectedResults, result].sort();
+    }
     // this.expectedResults = newExpectedResults;
+    this.smartTableServiceService.updateProject({...project, expectedResults: newExpectedResults });
   }
 }

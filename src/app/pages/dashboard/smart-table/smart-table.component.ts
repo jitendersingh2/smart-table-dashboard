@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NbDialogService } from '@nebular/theme';
 import { LocalDataSource } from 'ng2-smart-table';
-import * as html2Pdf from 'html2pdf.js';
+// import * as html2Pdf from 'html2pdf.js';
 import { EditProjectDetailsDialogComponent } from './edit-project-details-dialog/edit-project-details-dialog.component';
 import { RowSelectComponent } from './row-select/row-select.component';
 import { SmartTableServiceService } from './smart-table-service.service';
@@ -121,7 +121,8 @@ export class SmartTableComponent {
       ...this.service.getData01()[0],
       indicators: this.indicators,
     }));
-    this.data = data;
+    this.data = this.smartTableServiceService.allProjects.length > 0 ? this.smartTableServiceService.allProjects : data;
+    // this.smartTableServiceService.selectedProjects = 
     this.smartTableServiceService.setAllProjects(this.data);
     this.source.load(data);
     this.sectors = this.removeDuplicatesFromArray(data.map(project => project.sector));
