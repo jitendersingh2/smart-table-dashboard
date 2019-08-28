@@ -36,7 +36,7 @@
               <label for="developmentChallenges" class="label col-form-label">
                 Development Challenges
                 <!-- (click)="openWindow(contentTemplate, project.Context)" -->
-                <span [nbTooltip]="project.Context" nbTooltipPlacement="right"><i class="fa fa-info"></i></span>
+                <!-- <span [nbTooltip]="project.Context" nbTooltipPlacement="right"><i class="fa fa-info"></i></span> -->
               </label>
               <div>
                 <textarea id="developmentChallenges" name="developmentChallenges" rows="3" nbInput fullWidth shape="round" placeholder="Development Challenges" [(ngModel)]="project.Summary"></textarea>
@@ -78,4 +78,5 @@
       </nb-accordion-item>
     </nb-accordion>
   </div>
+  <button class="next-button" nbButton status="primary" (click)="next()">Next</button>
 </div>

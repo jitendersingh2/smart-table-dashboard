@@ -25,6 +25,7 @@ import { SmartTableComponent } from './smart-table/smart-table.component';
 import { EditProjectDetailsDialogComponent } from './smart-table/edit-project-details-dialog/edit-project-details-dialog.component';
 import { RowSelectComponent } from './smart-table/row-select/row-select.component';
 import { ProjectsEditComponent } from './projects-edit/projects-edit.component';
+import { ProjectsDownloadComponent } from './projects-download/projects-download.component';
 
 @NgModule({
   imports: [
@@ -54,6 +55,7 @@ import { ProjectsEditComponent } from './projects-edit/projects-edit.component';
     EditProjectDetailsDialogComponent,
     RowSelectComponent,
     ProjectsEditComponent,
+    ProjectsDownloadComponent,
   ],
   providers: [],
   entryComponents: [

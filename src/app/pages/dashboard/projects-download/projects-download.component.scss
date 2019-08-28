@@ -1,0 +1,13 @@
+.html-doc-view {
+  display: flex;
+  nb-card {
+    max-height: 400px;
+    .html-doc-container {
+      display: flex;
+    }
+  }
+}
+
+.download-button {
+  margin-top: 50px;
+}

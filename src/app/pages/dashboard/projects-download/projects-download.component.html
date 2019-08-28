@@ -1,0 +1,39 @@
+<div class="container row">
+  <div class="container col-md-12 col-lg-12 col-xxxl-12 html-doc-view">
+    <ng-container *ngFor="let project of selectedProjects;index as i">
+      <nb-card class="col-md-5 col-lg-5 col-xxxl-5">
+        <nb-card-body>
+          <div [id]="project.id">
+            <div>{{project.country}}</div>
+            <h2>{{project.name}}</h2>
+            <div class="html-doc-container">
+              <div>
+                <h5>Project Description</h5>
+                <p>{{project.description}}</p>
+              </div>
+              <div>
+                <h5>Development Challenges</h5>
+                <p>{{project.Summary}}</p>
+              </div>
+            </div>
+            <!-- <div>
+              <h3>Project Sector</h3>
+              <p>{{project.sector}}</p>
+            </div>
+            <div>
+              <h3>Project Country</h3>
+              <p>{{project.country}}</p>
+            </div>
+            <div>
+              <h3>Project Region</h3>
+              <p>{{project.region}}</p>
+            </div> -->
+          </div>
+        </nb-card-body>
+      </nb-card>
+      <nb-checkbox class="col-md-1" status="primary"></nb-checkbox>
+    </ng-container>
+  </div>
+</div>
+
+<button class="download-button" nbButton status="primary" (click)="exportAsDoc()">Download selected</button>

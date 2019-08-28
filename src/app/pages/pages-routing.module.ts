@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProjectsEditComponent } from './dashboard/projects-edit/projects-edit.component';
+import { ProjectsDownloadComponent } from './dashboard/projects-download/projects-download.component';
 
 const routes: Routes = [{
   path: '',
@@ -16,6 +17,10 @@ const routes: Routes = [{
     {
       path: 'projects-edit',
       component: ProjectsEditComponent,
+    },
+    {
+      path: 'projects-download',
+      component: ProjectsDownloadComponent,
     },
     {
       path: '',
