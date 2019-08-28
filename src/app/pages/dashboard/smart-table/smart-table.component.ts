@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NbDialogService } from '@nebular/theme';
 import { LocalDataSource } from 'ng2-smart-table';
@@ -14,7 +14,7 @@ import { SmartTableData } from '../../../@core/data/smart-table';
   templateUrl: './smart-table.component.html',
   styleUrls: ['./smart-table.component.scss'],
 })
-export class SmartTableComponent {
+export class SmartTableComponent implements OnInit {
 
   sectors: Array<String> = [];
   countries: Array<String> = [];
@@ -97,38 +97,44 @@ export class SmartTableComponent {
     public smartTableServiceService: SmartTableServiceService, 
     private dialogService: NbDialogService,
     private router: Router) {
-    const data = this.service.getData().map((projectDetails) => ({
-      id: projectDetails.PROJ_ID,
-      name: projectDetails.PROJ_DISPLAY_NAME,
-      description: projectDetails.PROJ_LGL_NAME,
-      status: projectDetails.PROJ_STAT_NAME,
-      approvedYear: projectDetails.PROJ_APPRVL_FY,
-      ibrdFinancing: projectDetails.ibrdFinancing,
-      region: projectDetails.RGN_NAME,
-      country: projectDetails.CNTRY_LONG_NAME,
-      sector: projectDetails.SECT_BD_NAME,
-      closedDate: projectDetails.closedDate,
-      lendingInstrument: projectDetails.lendingInstrument,
-      padOricr: projectDetails.padOricr,
-      expectedResults: projectDetails.expectedResults,
-      countryChallenges: projectDetails.countryChallenges,
-      projectGoals: projectDetails.projectGoals,
-      dataPoint00: projectDetails.dataPoint00,
-      dataPoint01: projectDetails.dataPoint01,
-      dataPoint02: projectDetails.dataPoint02,
-      dataPoint03: projectDetails.dataPoint03,
-      select: '',
-      ...this.service.getData01()[0],
-      indicators: this.indicators,
-    }));
-    this.data = this.smartTableServiceService.allProjects.length > 0 ? this.smartTableServiceService.allProjects : data;
-    // this.smartTableServiceService.selectedProjects = 
-    this.smartTableServiceService.setAllProjects(this.data);
-    this.source.load(data);
-    this.sectors = this.removeDuplicatesFromArray(data.map(project => project.sector));
-    this.countries = this.removeDuplicatesFromArray(data.map(project => project.country));
-    this.regions = this.removeDuplicatesFromArray(data.map(project => project.region));
-    this.approvalYears = this.removeDuplicatesFromArray(data.map(project => project.approvedYear));
+
+  }
+
+  ngOnInit() {
+    this.smartTableServiceService.getAllProjects().subscribe((res: any) => {
+      console.log('res- ', res);
+      const data = res.response.data.map((projectDetails) => ({
+        id: projectDetails.PROJ_ID,
+        name: projectDetails.PROJ_DISPLAY_NAME,
+        description: projectDetails.PROJ_LGL_NAME,
+        status: projectDetails.PROJ_STAT_NAME,
+        approvedYear: projectDetails.PROJ_APPRVL_FY,
+        region: projectDetails.RGN_NAME,
+        country: projectDetails.CNTRY_LONG_NAME,
+        sector: projectDetails.SECT_BD_NAME,
+        countryChallenges: projectDetails.countryChallenges,
+        projectGoals: projectDetails.projectGoals,
+        dataPoint00: 'Yes',
+        dataPoint01: 'Blue Money',
+        dataPoint02: 'Energy and Extractives',
+        dataPoint03: 'Finance',
+        ibrdFinancing: '400 Millions',
+        closedDate: '2019',
+        lendingInstrument: 'Other',
+        padOricr: 'PAD',
+        select: '',
+        ...this.service.getData01()[0],
+        indicators: this.indicators,
+      }));
+      this.data = this.smartTableServiceService.allProjects.length > 0 ? this.smartTableServiceService.allProjects : data;
+      // this.smartTableServiceService.selectedProjects = 
+      this.smartTableServiceService.setAllProjects(this.data);
+      this.source.load(data);
+      this.sectors = this.removeDuplicatesFromArray(data.map(project => project.sector));
+      this.countries = this.removeDuplicatesFromArray(data.map(project => project.country));
+      this.regions = this.removeDuplicatesFromArray(data.map(project => project.region));
+      this.approvalYears = this.removeDuplicatesFromArray(data.map(project => project.approvedYear));
+    })
   }
 
   removeDuplicatesFromArray(A: Array<String>): Array<String> {

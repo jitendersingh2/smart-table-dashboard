@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +9,12 @@ export class SmartTableServiceService {
   public allProjects: any =  [];
   public selectedProjects: any =  [];
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
+  getAllProjects() {
+    return this.httpClient.get('https://wbgauthservice.worldbank.org/BDProxyService?qs=%2Fjson%2FENTERPRISE%2FWB_OPERATION%2FPROJECT%2FLENDING%2FPROJECT_RESULT_IND_DETAIL_V2');
+  }
+  
   setAllProjects(projects) {
     this.allProjects = projects;
   }
