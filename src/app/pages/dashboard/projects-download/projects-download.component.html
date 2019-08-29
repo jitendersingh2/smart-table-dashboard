@@ -1,18 +1,18 @@
 <div class="container row">
   <div class="container col-md-12 col-lg-12 col-xxxl-12 html-doc-view">
-    <ng-container *ngFor="let project of selectedProjects;index as i">
+    <ng-container *ngFor="let project of projects;index as i">
       <nb-card class="col-md-5 col-lg-5 col-xxxl-5">
         <nb-card-body>
           <div [id]="project.id">
             <div>{{project.country}}</div>
-            <h2>{{project.name}}</h2>
-            <div class="html-doc-container">
-              <div>
-                <h5>Project Description</h5>
+            <h6>{{project.name}}</h6>
+            <div class="html-doc-container" style="display: flex;">
+              <div style="margin-right: 20px;">
+                <b>Project Description</b>
                 <p>{{project.description}}</p>
               </div>
               <div>
-                <h5>Development Challenges</h5>
+                <b>Development Challenges</b>
                 <p>{{project.Summary}}</p>
               </div>
             </div>
@@ -31,9 +31,8 @@
           </div>
         </nb-card-body>
       </nb-card>
-      <nb-checkbox class="col-md-1" status="primary"></nb-checkbox>
+      <nb-checkbox class="col-md-1" status="primary" (checkedChange)="checkedChange($event, project)"></nb-checkbox>
     </ng-container>
   </div>
+  <button class="download-button" nbButton status="primary" (click)="exportAsDoc()">Download selected</button>
 </div>
-
-<button class="download-button" nbButton status="primary" (click)="exportAsDoc()">Download selected</button>

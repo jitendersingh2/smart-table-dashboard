@@ -1,0 +1,22 @@
+<nb-card>
+    <nb-card-header>Select Indicators</nb-card-header>
+    <nb-card-body>
+      <nb-list>
+        <nb-list-item class="col-md-12 row">
+          <div class="col-md-2"></div>
+          <div class="col-md-6">Indicator</div>
+          <div class="col-md-2">Target Value</div>
+        </nb-list-item>
+        <nb-list-item class="col-md-12 row" *ngFor="let result of data.allIndicators">
+          <nb-checkbox class="col-md-2" status="primary" checked="true" (checkedChange)="checkedChange($event, result)"></nb-checkbox>
+          <div class="col-md-6">{{ result.indicator }}</div>
+          <div class="col-md-2">{{ result.target }}</div>
+        </nb-list-item>
+      </nb-list>
+    </nb-card-body>
+    <nb-card-footer>
+      <button class="cancel" nbButton status="danger" (click)="cancel()">Cancel</button>
+      <button class="update" nbButton status="success" (click)="submit()">Update Indicators</button>
+    </nb-card-footer>
+  </nb-card>
+  

@@ -6,6 +6,12 @@
           {{project.name}}
         </nb-accordion-item-header>
         <nb-accordion-item-body>
+          <div class="form-group">
+            <label for="projectGoals" class="label col-form-label">Project Description</label>
+            <div>
+              <textarea id="projectDescription" name="projectDescription" rows="3" nbInput fullWidth shape="round" placeholder="Project Description" [(ngModel)]="project.description"></textarea>
+            </div>
+          </div>
           <h5>Expected Results</h5>
           <nb-list>
             <nb-list-item class="col-md-12 row">
@@ -19,27 +25,22 @@
               <div class="col-md-2">{{ result.target }}</div>
             </nb-list-item>
           </nb-list>
+          <p class="select-more-indicators" (click)="editIndicators(project.allIndicators)">Select More Indicators</p>
           <form>
-            <div class="form-group">
-              <label for="projectGoals" class="label col-form-label">Project Description</label>
-              <div>
-                <textarea id="projectDescription" name="projectDescription" rows="2" nbInput fullWidth shape="round" placeholder="Project Description" [(ngModel)]="project.description"></textarea>
-              </div>
-            </div>
             <!-- <div class="form-group row">
               <label for="expectedResults" class="label col-form-label">Expected Results</label>
               <div>
                 <textarea id="expectedResults" name="expectedResults" rows="2" nbInput fullWidth shape="round" placeholder="Expected Results" [(ngModel)]="project.expectedResults"></textarea>
               </div>
             </div> -->
-            <div class="form-group">
+            <div class="form-group pt-5">
               <label for="developmentChallenges" class="label col-form-label">
                 Development Challenges
                 <!-- (click)="openWindow(contentTemplate, project.Context)" -->
                 <!-- <span [nbTooltip]="project.Context" nbTooltipPlacement="right"><i class="fa fa-info"></i></span> -->
               </label>
               <div>
-                <textarea id="developmentChallenges" name="developmentChallenges" rows="3" nbInput fullWidth shape="round" placeholder="Development Challenges" [(ngModel)]="project.Summary"></textarea>
+                <textarea id="developmentChallenges" name="developmentChallenges" rows="4" nbInput fullWidth shape="round" placeholder="Development Challenges" [(ngModel)]="project.Summary"></textarea>
               </div>
             </div>
             <!-- <div class="form-group row">
@@ -77,6 +78,6 @@
         </nb-accordion-item-body>
       </nb-accordion-item>
     </nb-accordion>
+    <button class="next-button" nbButton status="primary" (click)="next()">Next</button>
   </div>
-  <button class="next-button" nbButton status="primary" (click)="next()">Next</button>
 </div>

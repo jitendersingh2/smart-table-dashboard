@@ -26,6 +26,7 @@ import { EditProjectDetailsDialogComponent } from './smart-table/edit-project-de
 import { RowSelectComponent } from './smart-table/row-select/row-select.component';
 import { ProjectsEditComponent } from './projects-edit/projects-edit.component';
 import { ProjectsDownloadComponent } from './projects-download/projects-download.component';
+import { IndicatorsDialogComponent } from './projects-edit/indicators-dialog/indicators-dialog.component';
 
 @NgModule({
   imports: [
@@ -56,12 +57,14 @@ import { ProjectsDownloadComponent } from './projects-download/projects-download
     RowSelectComponent,
     ProjectsEditComponent,
     ProjectsDownloadComponent,
+    IndicatorsDialogComponent,
   ],
   providers: [],
   entryComponents: [
     SmartTableComponent,
     EditProjectDetailsDialogComponent,
     RowSelectComponent,
+    IndicatorsDialogComponent,
   ],
 })
 export class DashboardModule { }

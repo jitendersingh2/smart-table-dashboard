@@ -6,6 +6,9 @@
     // max-height: 900px;
     nb-accordion-item-body {
       padding: 0px;
+      ::ng-deep nb-list-item {
+        border: none;
+      }
       nb-checkbox {
         cursor: pointer;
       }
@@ -13,10 +16,17 @@
     .update {
       float: right;
     }
-    form {
+    .form-group {
       .label {
         font-size: 1rem;
       }
+    }
+    .select-more-indicators {
+      color: #0047FF;
+      cursor: pointer;
+      margin-top: 50px;
+      margin-left: 40px;
+      font-weight: 500;
     }
   }
   .next-button {

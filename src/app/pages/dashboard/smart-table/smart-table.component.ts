@@ -26,9 +26,10 @@ export class SmartTableComponent implements OnInit {
   selectedApprovalYears: Array<String> = [];
   showSelectedProjects: boolean = false;
   selectedProjects: any = [];
-  indicators: any = this.service.getResultIndicators().filter(ind => ind.PROJ_IND_USAGE_TYPE_CODE === "CI").map(ind => ({
+  allIndicators: any = this.service.getResultIndicators().map(ind => ({
     indicator: ind.IND_NAME,
     target: ind.TGT_VAL_TEXT,
+    type: ind.PROJ_IND_USAGE_TYPE_CODE,
   })).reduce((acc, current: any) => {
     const x = acc.find(item => item.indicator === current.indicator);
     if (!x) {
@@ -37,6 +38,7 @@ export class SmartTableComponent implements OnInit {
       return acc;
     }
   }, []);
+  indicators = this.allIndicators.filter(ind => ind.type === "CI")
   
   settings = {
     mode: 'external',
@@ -97,16 +99,50 @@ export class SmartTableComponent implements OnInit {
     public smartTableServiceService: SmartTableServiceService, 
     private dialogService: NbDialogService,
     private router: Router) {
-
+      // To use mock data, comment out the below code and comment to the below ngOnit method code
+      // const data = this.service.getData().map((projectDetails) => ({
+      //   id: projectDetails.PROJ_ID,
+      //   name: projectDetails.PROJ_DISPLAY_NAME,
+      //   description: projectDetails.PROJ_DISPLAY_NAME,
+      //   status: projectDetails.PROJ_STAT_NAME,
+      //   approvedYear: projectDetails.PROJ_APPRVL_FY,
+      //   ibrdFinancing: projectDetails.ibrdFinancing,
+      //   region: projectDetails.RGN_NAME,
+      //   country: projectDetails.CNTRY_LONG_NAME,
+      //   sector: projectDetails.SECT_BD_NAME,
+      //   closedDate: projectDetails.closedDate,
+      //   lendingInstrument: projectDetails.lendingInstrument,
+      //   padOricr: projectDetails.padOricr,
+      //   expectedResults: projectDetails.expectedResults,
+      //   countryChallenges: projectDetails.countryChallenges,
+      //   projectGoals: projectDetails.projectGoals,
+      //   dataPoint00: projectDetails.dataPoint00,
+      //   dataPoint01: projectDetails.dataPoint01,
+      //   dataPoint02: projectDetails.dataPoint02,
+      //   dataPoint03: projectDetails.dataPoint03,
+      //   select: '',
+      //   ...this.service.getData01()[0],
+      //   indicators: this.indicators,
+      //   allIndicators: this.allIndicators,
+      // }));
+      // this.data = this.smartTableServiceService.allProjects.length > 0 ? this.smartTableServiceService.allProjects : data;
+      // // this.smartTableServiceService.selectedProjects = 
+      // this.smartTableServiceService.setAllProjects(this.data);
+      // this.source.load(data);
+      // this.sectors = this.removeDuplicatesFromArray(data.map(project => project.sector));
+      // this.countries = this.removeDuplicatesFromArray(data.map(project => project.country));
+      // this.regions = this.removeDuplicatesFromArray(data.map(project => project.region));
+      // this.approvalYears = this.removeDuplicatesFromArray(data.map(project => project.approvedYear));
   }
 
   ngOnInit() {
+    // To use actual data, comment out the below code and comment to the constructor code
     this.smartTableServiceService.getAllProjects().subscribe((res: any) => {
       console.log('res- ', res);
       const data = res.response.data.map((projectDetails) => ({
         id: projectDetails.PROJ_ID,
         name: projectDetails.PROJ_DISPLAY_NAME,
-        description: projectDetails.PROJ_LGL_NAME,
+        description: projectDetails.PROJ_DISPLAY_NAME,
         status: projectDetails.PROJ_STAT_NAME,
         approvedYear: projectDetails.PROJ_APPRVL_FY,
         region: projectDetails.RGN_NAME,
@@ -125,6 +161,7 @@ export class SmartTableComponent implements OnInit {
         select: '',
         ...this.service.getData01()[0],
         indicators: this.indicators,
+        allIndicators: this.allIndicators,
       }));
       this.data = this.smartTableServiceService.allProjects.length > 0 ? this.smartTableServiceService.allProjects : data;
       // this.smartTableServiceService.selectedProjects = 
@@ -134,7 +171,7 @@ export class SmartTableComponent implements OnInit {
       this.countries = this.removeDuplicatesFromArray(data.map(project => project.country));
       this.regions = this.removeDuplicatesFromArray(data.map(project => project.region));
       this.approvalYears = this.removeDuplicatesFromArray(data.map(project => project.approvedYear));
-    })
+    });
   }
 
   removeDuplicatesFromArray(A: Array<String>): Array<String> {
