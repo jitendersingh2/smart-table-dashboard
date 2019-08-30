@@ -43,7 +43,7 @@
               <label for="developmentChallenges" class="label col-form-label">
                 Development Challenges
                 <!-- (click)="openWindow(contentTemplate, project.Context)" -->
-                <!-- <span [nbTooltip]="project.Context" nbTooltipPlacement="right"><i class="fa fa-info"></i></span> -->
+                <span (click)="openWindow(contentTemplate, project.Context)" class="project-context"><i class="fas fa-info-circle"></i></span>
               </label>
               <div>
                 <textarea id="developmentChallenges" name="developmentChallenges" rows="4" nbInput fullWidth shape="round" placeholder="Development Challenges" [(ngModel)]="project.Summary"></textarea>
@@ -87,3 +87,8 @@
     <button class="next-button" nbButton status="primary" (click)="next()">Next</button>
   </div>
 </div>
+
+<ng-template #contentTemplate let-data>
+  <p>Here is the text provided via config: "{{ data.text }}"</p>
+</ng-template>
+  
