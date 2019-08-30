@@ -9,11 +9,32 @@ import { NbDialogRef } from '@nebular/theme';
 export class IndicatorsDialogComponent implements OnInit {
   @Input() data: any;
   allIndicators: any = [];
+  selectedIndicators: any = [];
 
   constructor(protected ref: NbDialogRef<IndicatorsDialogComponent>) { }
 
   ngOnInit() {
-    this.allIndicators = this.data.allIndicators;
+    const existingIndicators = this.data.project.indicators.map(ind => ind.indicator);
+    this.allIndicators = this.data.project.allIndicators.map((ind) => {
+      if(existingIndicators.indexOf(ind.indicator) > -1) {
+        ind.checked = true;
+      }
+      return ind;
+    });
+    this.selectedIndicators = this.allIndicators.filter(ind => ind.checked);
+    console.log('existingIndicators- ', existingIndicators, this.allIndicators);
+  }
+
+  checkedChange(checked: boolean, targetIndicator: any) {
+    const selectedIndicators = this.selectedIndicators;
+    let newSelectedIndicators = selectedIndicators;
+    if(!checked) {
+      newSelectedIndicators = selectedIndicators.filter(originalIndicator => originalIndicator.indicator !== targetIndicator.indicator);
+    } else {
+      targetIndicator.checked = true;
+      newSelectedIndicators.push(targetIndicator);
+    }
+    this.selectedIndicators = newSelectedIndicators;
   }
 
   cancel() {
@@ -21,6 +42,17 @@ export class IndicatorsDialogComponent implements OnInit {
   }
 
   submit() {
-    this.ref.close();
+    this.allIndicators = this.allIndicators.map((ind) => {
+      ind.checked = null;
+      return ind;
+    });
+    this.selectedIndicators = this.selectedIndicators.map((ind) => {
+      ind.checked = null;
+      return ind;
+    });
+    this.ref.close({
+      projectId: this.data.project.id,
+      indicators: this.selectedIndicators,
+    });
   }
 }

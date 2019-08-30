@@ -37,15 +37,25 @@ export class ProjectsEditComponent implements OnInit {
     this.smartTableServiceService.updateProject({...project, expectedResults: newExpectedResults });
   }
 
-  editIndicators(allIndicators: any): void {
+  editIndicators(project: any): void {
     this.dialogService.open(IndicatorsDialogComponent, {
       context: {
         data: {
-          allIndicators
+          project
+          // allIndicators: project.allIndicators,
+          // projectId: project.id,
         }
       },
-    }).onClose.subscribe(updatedProject => {
-      
+    }).onClose.subscribe(payload => {
+      console.log('payload- ', payload);
+      if(payload && payload.indicators && payload.indicators.length > 0) {
+        this.selectedProjects = this.selectedProjects.map((project) => {
+          if(project.id === payload.projectId) {
+            project.indicators = [...payload.indicators].sort((a, b): any => a.indicator > b.indicator);
+          }
+          return project;
+        });
+      }
     });
   }
 

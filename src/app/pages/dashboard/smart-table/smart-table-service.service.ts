@@ -12,7 +12,7 @@ export class SmartTableServiceService {
   constructor(private httpClient: HttpClient) { }
 
   getAllProjects() {
-    return this.httpClient.get('https://wbgauthservice.worldbank.org/BDProxyService?qs=%2Fjson%2FENTERPRISE%2FWB_OPERATION%2FPROJECT%2FLENDING%2FPROJECT_RESULT_IND_DETAIL_V2');
+    return this.httpClient.get('https://wbgauthservice.worldbank.org/BDProxyService?qs=%2Fjson%2FENTERPRISE%2FWB_OPERATION%2FPROJECT%2FPROJECT%2FPROJECT_MASTER_V2');
   }
   
   setAllProjects(projects) {

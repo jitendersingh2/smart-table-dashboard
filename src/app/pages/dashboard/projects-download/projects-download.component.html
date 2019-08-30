@@ -4,8 +4,15 @@
       <nb-card class="col-md-5 col-lg-5 col-xxxl-5">
         <nb-card-body>
           <div [id]="project.id">
-            <div>{{project.country}}</div>
-            <h6>{{project.name}}</h6>
+            <div class="project-header">
+              <div class="project-header-desc">
+                <div class="project-country">{{project.country}}</div>
+                <h6>{{project.name}}</h6>
+              </div>
+              <div class="project-image">
+                <img [src]="project.imgLink" alt="" />
+              </div>
+            </div>
             <div class="html-doc-container" style="display: flex;">
               <div style="margin-right: 20px;">
                 <b>Project Description</b>

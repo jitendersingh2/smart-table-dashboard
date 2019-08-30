@@ -2,8 +2,22 @@
   display: flex;
   nb-card {
     max-height: 400px;
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+    }
+    .project-image {
+      img {
+        width: 40px;
+        height: 60px;
+      }
+    }
     .html-doc-container {
       display: flex;
+    }
+    .project-country {
+      font-weight: bolder;
+      font-size: 18px;
     }
   }
 }

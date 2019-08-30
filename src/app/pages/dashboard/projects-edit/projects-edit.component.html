@@ -12,12 +12,18 @@
               <textarea id="projectDescription" name="projectDescription" rows="3" nbInput fullWidth shape="round" placeholder="Project Description" [(ngModel)]="project.description"></textarea>
             </div>
           </div>
+          <div class="form-group">
+            <label for="projectImageLink" class="label col-sm-4 col-form-label">Select Image</label>
+            <div class="col-sm-8">
+              <input type="text" name="projectImageLink" nbInput fullWidth id="projectImageLink" placeholder="Enter project image link here" [(ngModel)]="project.imgLink">
+            </div>
+          </div>
           <h5>Expected Results</h5>
           <nb-list>
             <nb-list-item class="col-md-12 row">
               <div class="col-md-2"></div>
-              <div class="col-md-6">Indicator</div>
-              <div class="col-md-2">Target Value</div>
+              <div class="col-md-6"><b>Indicator</b></div>
+              <div class="col-md-2"><b>Target Value</b></div>
             </nb-list-item>
             <nb-list-item class="col-md-12 row" *ngFor="let result of project.indicators">
               <nb-checkbox class="col-md-2" status="primary" checked="true" (checkedChange)="checkedChange($event, result, project)"></nb-checkbox>
@@ -25,7 +31,7 @@
               <div class="col-md-2">{{ result.target }}</div>
             </nb-list-item>
           </nb-list>
-          <p class="select-more-indicators" (click)="editIndicators(project.allIndicators)">Select More Indicators</p>
+          <p class="select-more-indicators" (click)="editIndicators(project)">Select More Indicators</p>
           <form>
             <!-- <div class="form-group row">
               <label for="expectedResults" class="label col-form-label">Expected Results</label>
@@ -50,25 +56,25 @@
               </div>
             </div> -->
             <div class="form-group row">
-              <label for="projectName" class="label col-sm-4 col-form-label">IBRD Financing</label>
+              <label for="ibrdFinancing" class="label col-sm-4 col-form-label">IBRD Financing</label>
               <div class="col-sm-8">
                 <input type="text" name="ibrdFinancing" nbInput fullWidth id="ibrdFinancing" placeholder="IBRD Financing" [(ngModel)]="project.ibrdFinancing">
               </div>
             </div>
             <div class="form-group row">
-              <label for="projectName" class="label col-sm-4 col-form-label">Data Point 00</label>
+              <label for="dataPoint00" class="label col-sm-4 col-form-label">Data Point 00</label>
               <div class="col-sm-8">
                 <input type="text" name="dataPoint00" nbInput fullWidth id="dataPoint00" placeholder="Data Point 00" [(ngModel)]="project.dataPoint00">
               </div>
             </div>
             <div class="form-group row">
-              <label for="projectName" class="label col-sm-4 col-form-label">Data Point 01</label>
+              <label for="dataPoint01" class="label col-sm-4 col-form-label">Data Point 01</label>
               <div class="col-sm-8">
                 <input type="text" name="dataPoint01" nbInput fullWidth id="dataPoint01" placeholder="Data Point 01" [(ngModel)]="project.dataPoint01">
               </div>
             </div>
             <div class="form-group row">
-              <label for="projectName" class="label col-sm-4 col-form-label">Data Point 02</label>
+              <label for="dataPoint02" class="label col-sm-4 col-form-label">Data Point 02</label>
               <div class="col-sm-8">
                 <input type="text" name="dataPoint02" nbInput fullWidth id="dataPoint02" placeholder="Data Point 02" [(ngModel)]="project.dataPoint02">
               </div>

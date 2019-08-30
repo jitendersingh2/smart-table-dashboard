@@ -5703,7 +5703,7 @@ export class SmartTableService extends SmartTableData {
             "TGT_DATE": "2020-09-30",
             "TGT_VAL_TEXT": "Yes",
             "TGT_CMNTS_TEXT": null,
-            "PROJ_IND_USAGE_TYPE_CODE": "CI"
+            "PROJ_IND_USAGE_TYPE_CODE": "CO"
         },
         {
             "PROJ_ID": "P252350",
@@ -5772,7 +5772,7 @@ export class SmartTableService extends SmartTableData {
             "TGT_DATE": "2020-09-30",
             "TGT_VAL_TEXT": "25000.00",
             "TGT_CMNTS_TEXT": null,
-            "PROJ_IND_USAGE_TYPE_CODE": "CI"
+            "PROJ_IND_USAGE_TYPE_CODE": "CO"
         },
         {
             "PROJ_ID": "P252350",
@@ -5841,7 +5841,7 @@ export class SmartTableService extends SmartTableData {
             "TGT_DATE": "2020-09-30",
             "TGT_VAL_TEXT": "Yes",
             "TGT_CMNTS_TEXT": null,
-            "PROJ_IND_USAGE_TYPE_CODE": "CI"
+            "PROJ_IND_USAGE_TYPE_CODE": "CO"
         },
         {
             "PROJ_ID": "P252350",
@@ -5910,7 +5910,7 @@ export class SmartTableService extends SmartTableData {
             "TGT_DATE": "2020-09-30",
             "TGT_VAL_TEXT": "Yes",
             "TGT_CMNTS_TEXT": null,
-            "PROJ_IND_USAGE_TYPE_CODE": "CI"
+            "PROJ_IND_USAGE_TYPE_CODE": "CO"
         },
         {
             "PROJ_ID": "P252350",
@@ -5956,7 +5956,7 @@ export class SmartTableService extends SmartTableData {
             "TGT_DATE": "2020-09-30",
             "TGT_VAL_TEXT": "Yes",
             "TGT_CMNTS_TEXT": null,
-            "PROJ_IND_USAGE_TYPE_CODE": "CI"
+            "PROJ_IND_USAGE_TYPE_CODE": "CO"
         },
         {
             "PROJ_ID": "P252350",
@@ -6025,7 +6025,7 @@ export class SmartTableService extends SmartTableData {
             "TGT_DATE": "2020-09-30",
             "TGT_VAL_TEXT": "46.00",
             "TGT_CMNTS_TEXT": null,
-            "PROJ_IND_USAGE_TYPE_CODE": "CI"
+            "PROJ_IND_USAGE_TYPE_CODE": "CO"
         },
         {
             "PROJ_ID": "P252338",
@@ -6094,7 +6094,7 @@ export class SmartTableService extends SmartTableData {
             "TGT_DATE": "2021-12-31",
             "TGT_VAL_TEXT": "15.00",
             "TGT_CMNTS_TEXT": null,
-            "PROJ_IND_USAGE_TYPE_CODE": "CI"
+            "PROJ_IND_USAGE_TYPE_CODE": "CO"
         },
         {
             "PROJ_ID": "P252338",
@@ -6140,7 +6140,7 @@ export class SmartTableService extends SmartTableData {
             "TGT_DATE": "2021-12-31",
             "TGT_VAL_TEXT": "85% of the road under Defects Liability Period \/",
             "TGT_CMNTS_TEXT": null,
-            "PROJ_IND_USAGE_TYPE_CODE": "CI"
+            "PROJ_IND_USAGE_TYPE_CODE": "CO"
         },
         {
             "PROJ_ID": "P252338",
@@ -6163,7 +6163,7 @@ export class SmartTableService extends SmartTableData {
             "TGT_DATE": "2021-12-31",
             "TGT_VAL_TEXT": "820.00",
             "TGT_CMNTS_TEXT": null,
-            "PROJ_IND_USAGE_TYPE_CODE": "CI"
+            "PROJ_IND_USAGE_TYPE_CODE": "CO"
         },
         {
             "PROJ_ID": "P252338",
