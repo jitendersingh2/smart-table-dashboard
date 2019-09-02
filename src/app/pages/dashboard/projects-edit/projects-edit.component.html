@@ -89,6 +89,6 @@
 </div>
 
 <ng-template #contentTemplate let-data>
-  <p>Here is the text provided via config: "{{ data.text }}"</p>
+  <p [innerHtml]="data.text"></p>
 </ng-template>
   

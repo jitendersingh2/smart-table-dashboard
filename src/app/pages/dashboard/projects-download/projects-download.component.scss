@@ -1,23 +1,56 @@
 .html-doc-view {
   display: flex;
   nb-card {
+    min-width: 600px;
     max-height: 400px;
+    overflow-x: hidden;
+    .project-download-view {
+      overflow-x: hidden;
+    }
     .project-header {
       display: flex;
       justify-content: space-between;
     }
-    .project-image {
+    .project-image-1 {
       img {
         width: 40px;
         height: 60px;
       }
     }
+    .project-image-2 {
+      margin-top: 5px;
+      img {
+        width: 250px;
+        height: 250px;
+      }
+    }
     .html-doc-container {
       display: flex;
+      .left-content {
+        border: 1px solid lightgray;
+        .description {
+          margin-bottom: 0;
+          color: white;
+          background: skyblue;
+        }
+        .purpose {
+          margin-bottom: 5px;
+          border-top: 1px solid lightgray;
+        }
+        .expected-results {
+          margin-bottom: 5px;
+          border-top: 1px solid lightgray;
+        }
+      }
     }
     .project-country {
       font-weight: bolder;
       font-size: 18px;
+    }
+    .project-footer {
+      .more-info {
+        word-break: break-word;
+      }
     }
   }
 }

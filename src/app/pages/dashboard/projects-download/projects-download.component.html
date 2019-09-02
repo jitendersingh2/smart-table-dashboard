@@ -3,38 +3,42 @@
     <ng-container *ngFor="let project of projects;index as i">
       <nb-card class="col-md-5 col-lg-5 col-xxxl-5">
         <nb-card-body>
-          <div [id]="project.id">
-            <div class="project-header">
+          <div [id]="project.id" class="project-download-view">
+            <div class="project-header" style="display: flex;justify-content: space-between;">
               <div class="project-header-desc">
                 <div class="project-country">{{project.country}}</div>
-                <h6>{{project.name}}</h6>
+                <p style="font-weight: bold; font-size: 18px;">{{project.name}}</p>
               </div>
-              <div class="project-image">
-                <img [src]="project.imgLink" alt="" />
+              <div class="project-image-1">
+                <img src="https://sustainabledevelopment.un.org/content/images/sdgsfirst.png" alt="" width="40" height="60" />
               </div>
             </div>
             <div class="html-doc-container" style="display: flex;">
-              <div style="margin-right: 20px;">
+              <div style="margin-right: 20px;width: 50%;">
+                <div class="left-content" style="border: 1px solid lightgray;">
+                  <p class="description" style="margin-bottom: 0;color: white;background: skyblue;">Description</p>
+                  <p class="purpose" style="margin-bottom: 5px;border-top: 1px solid lightgray;"><b>Purpose: </b>To support the Government's Integrated Basic Cleanup while simuntaneously improving
+                  sanitary conditions along the banks of La Plata River and prove a long-term and cost-effective solution for safe disposal
+                  of wastewater from the Buenos Aires Metropolitan Area</p>
+                  <p class="expected-results" style="margin-bottom: 5px;border-top: 1px solid lightgray;"><b>Expected Results (include): </b>{{getIndicators(project.indicators)}}</p>
+                  <p class="expected-results" style="margin-bottom: 5px;border-top: 1px solid lightgray;"><b>IBRD Financing: {{project.ibrdFinancing}}</b></p>
+                </div>
+                <div class="project-image-2">
+                  <img [src]="project.imgLink" alt="" width="250" height="250" />
+                </div>
+              </div>
+              <div style="width: 50%;">
+                <b>Development Challenges</b>
+                <p>{{project.Summary}}</p>
                 <b>Project Description</b>
                 <p>{{project.description}}</p>
               </div>
-              <div>
-                <b>Development Challenges</b>
-                <p>{{project.Summary}}</p>
+            </div>
+            <div class="project-footer">
+              <div class="more-info">For more information: 
+                <a [href]="project.PDFLink" target="_blank">{{project.PDFLink}}</a>
               </div>
             </div>
-            <!-- <div>
-              <h3>Project Sector</h3>
-              <p>{{project.sector}}</p>
-            </div>
-            <div>
-              <h3>Project Country</h3>
-              <p>{{project.country}}</p>
-            </div>
-            <div>
-              <h3>Project Region</h3>
-              <p>{{project.region}}</p>
-            </div> -->
           </div>
         </nb-card-body>
       </nb-card>

@@ -133,7 +133,6 @@ export class SmartTableComponent implements OnInit {
     this.smartTableServiceService.selectedProjects = [];
     // To use actual data, comment out the below code and add comment to the constructor code
     this.smartTableServiceService.getAllProjects().subscribe((res: any) => {
-      console.log('res- ', res);
       const data = res.response.data.map((projectDetails) => ({
         id: projectDetails.PROJ_ID,
         name: projectDetails.PROJ_DISPLAY_NAME,

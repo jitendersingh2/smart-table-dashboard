@@ -17,6 +17,10 @@ export class ProjectsDownloadComponent implements OnInit {
     console.log('this.selectedProjects- ', this.projects);
   }
 
+  getIndicators(indicators) {
+    return indicators.map(ind => ind.indicator).join(',');
+  }
+
   checkedChange(checked: boolean, project: any) {
     // console.log('e- ', checked, result);
     const selectedProjects = this.selectedProjects;

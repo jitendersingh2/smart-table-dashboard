@@ -32,7 +32,7 @@ export class ProjectsEditComponent implements OnInit {
         // hasBackdrop: false,
         windowClass: 'context-dialog',
         context: {
-          text: data,
+          text: data.replace(/\\r/g, '<br />').replace(/\\n/g, '<br />'),
         },
       },
     );
@@ -40,6 +40,27 @@ export class ProjectsEditComponent implements OnInit {
 
   submit(project) {
     console.log('project- ', project);
+    // const payload = {
+    //   PROJ_ID: project.id,
+    //   PROJ_DISPLAY_NAME: project.name,
+    //   PROJ_STAT_NAME: project.status,
+    //   PROJ_APPRVL_FY: project.approvedYear,
+    //   RGN_NAME: project.region,
+    //   CNTRY_LONG_NAME: project.country,
+    //   SECT_BD_NAME: project.sector,
+    //   ibrdFinancing: project.ibrdFinancing,
+    //   closedDate: project.closedDate,
+    //   lendingInstrument: project.lendingInstrument,
+    //   padOricr: project.padOricr,
+    //   countryChallenges: project.countryChallenges,
+    //   projectGoals: project.projectGoals,
+    //   dataPoint00: project.dataPoint00,
+    //   dataPoint01: project.dataPoint01,
+    //   dataPoint02: project.dataPoint02,
+    //   dataPoint03: project.dataPoint03,
+    //   indicators: project.indicators,
+    // };
+    // this.smartTableServiceService.updateProjectDetails(payload);
     this.smartTableServiceService.updateProject(project);
   }
 

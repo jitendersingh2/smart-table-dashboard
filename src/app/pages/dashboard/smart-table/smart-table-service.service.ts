@@ -14,6 +14,10 @@ export class SmartTableServiceService {
   getAllProjects() {
     return this.httpClient.get('https://wbgauthservice.worldbank.org/BDProxyService?qs=%2Fjson%2FENTERPRISE%2FWB_OPERATION%2FPROJECT%2FPROJECT%2FPROJECT_MASTER_V2');
   }
+
+  updateProjectDetails(payload) {
+    return this.httpClient.put('https://wbgauthservice.worldbank.org/BDProxyService?qs=%2Fjson%2FENTERPRISE%2FWB_OPERATION%2FPROJECT%2FPROJECT%2FPROJECT_MASTER_V2', payload);
+  }
   
   setAllProjects(projects) {
     this.allProjects = projects;
