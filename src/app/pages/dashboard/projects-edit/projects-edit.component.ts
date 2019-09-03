@@ -11,6 +11,7 @@ import { IndicatorsDialogComponent } from './indicators-dialog/indicators-dialog
 })
 export class ProjectsEditComponent implements OnInit {
   selectedProjects: any = [];
+  sdgImages: any = [...Array(17)].map((_, i) => `https://sustainabledevelopment.un.org/content/images/E_SDG_Icons-${i < 9 ? '0' + (i + 1) : i + 1}.jpg`);
 
   constructor(
     public smartTableServiceService: SmartTableServiceService, 
@@ -21,7 +22,6 @@ export class ProjectsEditComponent implements OnInit {
 
   ngOnInit() {
     this.selectedProjects = this.smartTableServiceService.selectedProjects;
-    console.log('this.selectedProjects- ', this.selectedProjects);
   }
 
   openWindow(contentTemplate, data) {
@@ -39,7 +39,6 @@ export class ProjectsEditComponent implements OnInit {
   }
 
   submit(project) {
-    console.log('project- ', project);
     // const payload = {
     //   PROJ_ID: project.id,
     //   PROJ_DISPLAY_NAME: project.name,
@@ -84,7 +83,6 @@ export class ProjectsEditComponent implements OnInit {
         }
       },
     }).onClose.subscribe(payload => {
-      console.log('payload- ', payload);
       if(payload && payload.indicators && payload.indicators.length > 0) {
         this.selectedProjects = this.selectedProjects.map((project) => {
           if(project.id === payload.projectId) {

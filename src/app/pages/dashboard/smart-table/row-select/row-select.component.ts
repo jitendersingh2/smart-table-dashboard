@@ -13,8 +13,6 @@ export class RowSelectComponent {
 
   checkedChange(event: any) {
     // @ts-ignore
-    console.log('val- ', this);
-    // @ts-ignore
     this.smartTableServiceService.setSelectedProjects(this.rowData.id, event);
   }
 

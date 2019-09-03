@@ -26,7 +26,6 @@ export class EditProjectDetailsDialogComponent implements OnInit {
   }
 
   checkedChange(checked: boolean, result: string) {
-    console.log('e- ', checked, result);
     const { expectedResults } = this.data.projectDetails;
     let newExpectedResults = [];
     if(!checked) {

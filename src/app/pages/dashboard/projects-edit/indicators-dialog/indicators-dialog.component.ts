@@ -22,7 +22,6 @@ export class IndicatorsDialogComponent implements OnInit {
       return ind;
     });
     this.selectedIndicators = this.allIndicators.filter(ind => ind.checked);
-    console.log('existingIndicators- ', existingIndicators, this.allIndicators);
   }
 
   checkedChange(checked: boolean, targetIndicator: any) {

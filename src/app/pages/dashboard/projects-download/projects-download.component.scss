@@ -4,6 +4,9 @@
     min-width: 600px;
     max-height: 400px;
     overflow-x: hidden;
+    .project-download-view-container {
+      display: flex;
+    }
     .project-download-view {
       overflow-x: hidden;
     }
@@ -11,10 +14,15 @@
       display: flex;
       justify-content: space-between;
     }
-    .project-image-1 {
-      img {
-        width: 40px;
-        height: 60px;
+    .sdg-images-container {
+      display: flex;
+      flex-direction: column;
+      .project-image-1 {
+        margin-bottom: 3px;
+        img {
+          width: 40px;
+          height: 60px;
+        }
       }
     }
     .project-image-2 {

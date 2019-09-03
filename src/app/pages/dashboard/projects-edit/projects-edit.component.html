@@ -13,20 +13,32 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="projectImageLink" class="label col-sm-4 col-form-label">Select Image</label>
-            <div class="col-sm-8">
-              <input type="text" name="projectImageLink" nbInput fullWidth id="projectImageLink" placeholder="Enter project image link here" [(ngModel)]="project.imgLink">
+            <div class="row">
+              <label for="projectImageLink" class="label col-sm-6 col-form-label">Select Image</label>
+              <label for="projectImageLink" class="label col-sm-6 col-form-label">Select SDGs</label>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <input type="text" name="projectImageLink" nbInput fullWidth id="projectImageLink" placeholder="Enter project image link here" [(ngModel)]="project.imgLink">
+              </div>
+              <div class="col-sm-3">
+                <nb-select multiple fullWidth id="approvalYear" [(ngModel)]="project.sdgImages">
+                  <nb-option *ngFor="let sdgImgSrc of sdgImages; index as i" [value]="sdgImgSrc">
+                    <img [src]="sdgImgSrc" height="45" width="90" alt="" style="margin-left: 30px;" />
+                  </nb-option>
+                </nb-select>
+              </div>
             </div>
           </div>
           <h5>Expected Results</h5>
           <nb-list>
             <nb-list-item class="col-md-12 row">
-              <div class="col-md-2"></div>
+              <div class="col-md-1"></div>
               <div class="col-md-6"><b>Indicator</b></div>
               <div class="col-md-2"><b>Target Value</b></div>
             </nb-list-item>
             <nb-list-item class="col-md-12 row" *ngFor="let result of project.indicators">
-              <nb-checkbox class="col-md-2" status="primary" checked="true" (checkedChange)="checkedChange($event, result, project)"></nb-checkbox>
+              <nb-checkbox class="col-md-1" status="primary" checked="true" (checkedChange)="checkedChange($event, result, project)"></nb-checkbox>
               <div class="col-md-6">{{ result.indicator }}</div>
               <div class="col-md-2">{{ result.target }}</div>
             </nb-list-item>

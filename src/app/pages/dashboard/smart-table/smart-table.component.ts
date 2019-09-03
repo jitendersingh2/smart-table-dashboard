@@ -118,9 +118,9 @@ export class SmartTableComponent implements OnInit {
       //   indicators: this.indicators,
       //   allIndicators: this.allIndicators,
       //   imgLink: '',
+      //   sdgImages: [],
       // }));
       // this.data = this.smartTableServiceService.allProjects.length > 0 ? this.smartTableServiceService.allProjects : data;
-      // // this.smartTableServiceService.selectedProjects = 
       // this.smartTableServiceService.setAllProjects(this.data);
       // this.source.load(data);
       // this.sectors = this.removeDuplicatesFromArray(data.map(project => project.sector));
@@ -157,9 +157,9 @@ export class SmartTableComponent implements OnInit {
         indicators: this.indicators,
         allIndicators: this.allIndicators,
         imgLink: '',
+        sdgImages: [],
       }));
       this.data = this.smartTableServiceService.allProjects.length > 0 ? this.smartTableServiceService.allProjects : data;
-      // this.smartTableServiceService.selectedProjects = 
       this.smartTableServiceService.setAllProjects(this.data);
       this.source.load(data);
       this.sectors = this.removeDuplicatesFromArray(data.map(project => project.sector));
@@ -185,9 +185,6 @@ export class SmartTableComponent implements OnInit {
     }, err => {
       console.log('err', err) // when there's an error
     });;
-    // this.selectedProjects = this.smartTableServiceService.selectedProjects;
-    // console.log('this.selectedProjects- ', this.selectedProjects);
-    // this.showSelectedProjects = true;
   }
 
   filterTable(filterType: string, filterValue: Array<String>): void {

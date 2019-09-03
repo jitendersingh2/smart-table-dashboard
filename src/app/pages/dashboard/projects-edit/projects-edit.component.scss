@@ -21,6 +21,18 @@
         font-size: 1rem;
       }
     }
+    textarea {
+      background: #F7F7F7;
+    }
+    ::ng-deep nb-select {
+      height: 100%;
+      button {
+        height: 100%;
+      }
+    }
+    ::ng-deep nb-list-item {
+      padding: 0.7rem;
+    }
     .project-context {
       i {
         cursor: pointer;

@@ -13,16 +13,17 @@ export class ProjectsDownloadComponent implements OnInit {
   constructor(private smartTableServiceService: SmartTableServiceService) { }
 
   ngOnInit() {
-    this.projects = this.smartTableServiceService.selectedProjects;
-    console.log('this.selectedProjects- ', this.projects);
+    this.projects = this.smartTableServiceService.selectedProjects.map((project) => {
+      project.Summary = project.Summary.replace(/\\r/g, '').replace(/\\n/g, '<br />').replace(/\\/g, '');
+      return project;
+    });
   }
 
   getIndicators(indicators) {
-    return indicators.map(ind => ind.indicator).join(',');
+    return indicators.map(ind => `${ind.indicator} (Target: ${ind.target})`).join(',');
   }
 
   checkedChange(checked: boolean, project: any) {
-    // console.log('e- ', checked, result);
     const selectedProjects = this.selectedProjects;
     let newSelectedProjects = [];
     if(!checked) {
@@ -34,7 +35,6 @@ export class ProjectsDownloadComponent implements OnInit {
 
   exportAsDoc(): void {
     const selectedProjects = this.selectedProjects;
-    console.log('selectedProjects- ', selectedProjects);
     if(selectedProjects.length === 0) {
       return ;
     }
