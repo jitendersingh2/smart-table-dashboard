@@ -15,6 +15,10 @@ export class SmartTableServiceService {
     return this.httpClient.get('https://wbgauthservice.worldbank.org/BDProxyService?qs=%2Fjson%2FENTERPRISE%2FWB_OPERATION%2FPROJECT%2FPROJECT%2FPROJECT_MASTER_V2');
   }
 
+  getIndicatorss() {
+    return this.httpClient.get('https://wbgauthservice.worldbank.org/BDProxyService?qs=%2Fjson%2FENTERPRISE%2FWB_OPERATION%2FPROJECT%2FLENDING%2FPROJECT_RESULT_IND_DETAIL_V2%3FIN_PROJ_ID%3DP121540');
+  }
+
   updateProjectDetails(payload) {
     return this.httpClient.put('https://wbgauthservice.worldbank.org/BDProxyService?qs=%2Fjson%2FENTERPRISE%2FWB_OPERATION%2FPROJECT%2FPROJECT%2FPROJECT_MASTER_V2', payload);
   }

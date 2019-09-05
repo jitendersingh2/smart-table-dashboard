@@ -133,39 +133,47 @@ export class SmartTableComponent implements OnInit {
     this.smartTableServiceService.selectedProjects = [];
     // To use actual data, comment out the below code and add comment to the constructor code
     this.smartTableServiceService.getAllProjects().subscribe((res: any) => {
-      const data = res.response.data.map((projectDetails) => ({
-        id: projectDetails.PROJ_ID,
-        name: projectDetails.PROJ_DISPLAY_NAME,
-        description: projectDetails.PROJ_DISPLAY_NAME,
-        status: projectDetails.PROJ_STAT_NAME,
-        approvedYear: projectDetails.PROJ_APPRVL_FY,
-        region: projectDetails.RGN_NAME,
-        country: projectDetails.CNTRY_LONG_NAME,
-        sector: projectDetails.SECT_BD_NAME,
-        countryChallenges: projectDetails.countryChallenges,
-        projectGoals: projectDetails.projectGoals,
-        dataPoint00: 'Yes',
-        dataPoint01: 'Blue Money',
-        dataPoint02: 'Energy and Extractives',
-        dataPoint03: 'Finance',
-        ibrdFinancing: '400 Millions',
-        closedDate: '2019',
-        lendingInstrument: 'Other',
-        padOricr: 'PAD',
-        select: '',
-        ...this.service.getData01()[0],
-        indicators: this.indicators,
-        allIndicators: this.allIndicators,
-        imgLink: '',
-        sdgImages: [],
-      }));
-      this.data = this.smartTableServiceService.allProjects.length > 0 ? this.smartTableServiceService.allProjects : data;
-      this.smartTableServiceService.setAllProjects(this.data);
-      this.source.load(data);
-      this.sectors = this.removeDuplicatesFromArray(data.map(project => project.sector));
-      this.countries = this.removeDuplicatesFromArray(data.map(project => project.country));
-      this.regions = this.removeDuplicatesFromArray(data.map(project => project.region));
-      this.approvalYears = this.removeDuplicatesFromArray(data.map(project => project.approvedYear));
+      this.smartTableServiceService.getIndicatorss().subscribe((indicatorsRes: any) => {
+        const allIndicators: any = this.removeDuplicatesByKey(indicatorsRes.response.data.map(ind => ({
+          indicator: ind.IND_NAME,
+          target: ind.TGT_VAL_TEXT,
+          type: ind.PROJ_IND_USAGE_TYPE_CODE,
+        })), 'indicator');
+        const indicators = allIndicators.filter(ind => ind.type === "CI")
+        const data = res.response.data.map((projectDetails) => ({
+          id: projectDetails.PROJ_ID,
+          name: projectDetails.PROJ_DISPLAY_NAME,
+          description: projectDetails.PROJ_DISPLAY_NAME,
+          status: projectDetails.PROJ_STAT_NAME,
+          approvedYear: projectDetails.PROJ_APPRVL_FY,
+          region: projectDetails.RGN_NAME,
+          country: projectDetails.CNTRY_LONG_NAME,
+          sector: projectDetails.SECT_BD_NAME,
+          countryChallenges: projectDetails.countryChallenges,
+          projectGoals: projectDetails.projectGoals,
+          dataPoint00: 'Yes',
+          dataPoint01: 'Blue Money',
+          dataPoint02: 'Energy and Extractives',
+          dataPoint03: 'Finance',
+          ibrdFinancing: '400 Millions',
+          closedDate: '2019',
+          lendingInstrument: 'Other',
+          padOricr: 'PAD',
+          select: '',
+          ...this.service.getData01()[0],
+          indicators: indicators,
+          allIndicators: allIndicators,
+          imgLink: '',
+          sdgImages: [],
+        }));
+        this.data = this.smartTableServiceService.allProjects.length > 0 ? this.smartTableServiceService.allProjects : data;
+        this.smartTableServiceService.setAllProjects(this.data);
+        this.source.load(data);
+        this.sectors = this.removeDuplicatesFromArray(data.map(project => project.sector));
+        this.countries = this.removeDuplicatesFromArray(data.map(project => project.country));
+        this.regions = this.removeDuplicatesFromArray(data.map(project => project.region));
+        this.approvalYears = this.removeDuplicatesFromArray(data.map(project => project.approvedYear));
+      });
     });
   }
 
